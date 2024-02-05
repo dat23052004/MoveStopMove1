@@ -9,7 +9,7 @@ public class Level : MonoBehaviour
     public float planeDepth = 10f;
     public List<Vector3> pointList = new List<Vector3>();
                 
-    private void Start()
+    private void Awake()
     {         
         GeneratePoints();
     }
@@ -26,7 +26,7 @@ public class Level : MonoBehaviour
             float yPosition = 0f;
             Vector3 pointPosition = new Vector3(randomX, yPosition, randomZ);
             pointList.Add(pointPosition);
-            
+      
             //Debug.Log(i + ": " + pointList[i]); // In ra giá trị sau khi thêm vào
             i++;
         }

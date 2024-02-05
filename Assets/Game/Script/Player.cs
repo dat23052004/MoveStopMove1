@@ -32,6 +32,7 @@ public class Player : Character
         
         Moving();
         CheckSight();
+        
         //Debug.Log(bulletAvailable);
     }
     public void Moving()
@@ -83,9 +84,11 @@ public class Player : Character
         position = Vector3.zero;
         foreach (Collider collider in colliders)
         {     
-            if (collider.CompareTag("Bot"))
+            if ( collider.gameObject != gameObject && collider.CompareTag("Character"))
             {
+                Debug.LogWarning("Bot");
                 position = collider.transform.position;
+                Debug.Log(position);
                 //botPositions.Add(position);
                 return true;  // Trả về true nếu tìm thấy bot
             }

@@ -13,13 +13,17 @@ public class Bot : Character
     
     private bool isMoving = false;
     private Weapon currentWeapon = Weapon.Arrow;
+
+    private bool isRandomMovementActive = true;
+        
     private void Start()
     {
+        
         ChangeAnim("Idle");
         navMeshAgent = GetComponent<NavMeshAgent>();
         StartCoroutine(MovingToTarget());
         StartCoroutine(RandomMovement());      
-    }
+    }   
 
     private void Update()
     {
@@ -28,9 +32,12 @@ public class Bot : Character
 
     private IEnumerator MovingToTarget()
     {
-        
+        Debug.Log(level.pointList.Count);
+
         for (int i = 0; i < level.pointList.Count; i++)
-        { 
+        {
+            Debug.Log(level.pointList[i]);
+            
             // Di chuyển bot đến điểm đó
             navMeshAgent.SetDestination(level.pointList[i]);
 
@@ -39,17 +46,18 @@ public class Bot : Character
             {
                 ChangeAnim("Run");
                 isMoving =false;
-                // Cập nhật mỗi frame
                 yield return null;
             }
 
             yield return new WaitForSeconds(1);
+            StopRandomMovement();
             //isMoving = false;
         }
+        isRandomMovementActive = false;
     }
     private IEnumerator RandomMovement()
     {
-        while (true)
+        while (isRandomMovementActive)
         {
             if (isMoving)
             {
@@ -76,6 +84,11 @@ public class Bot : Character
         }
     }
 
+
+    private void StopRandomMovement()
+    {
+        isRandomMovementActive = false;
+    }
     public void CheckSight()
     {
         if (!isMoving)
@@ -100,7 +113,7 @@ public class Bot : Character
         position = Vector3.zero;
         foreach (Collider collider in colliders)
         {
-            if (collider.CompareTag("Character"))
+            if ( collider.gameObject != gameObject  && collider.CompareTag("Character"))
             {
                 //Debug.LogWarning("Bot");
                 position = collider.transform.position;
@@ -120,7 +133,7 @@ public class Bot : Character
             yield return null;
         }
         SimplePool.Despawn(bulletObj);
-        Debug.Log("Despawn");
+        //Debug.Log("Despawn");
         bulletAvailable = true;
     }
     public void Shoot()
@@ -132,7 +145,7 @@ public class Bot : Character
             ChangeAnim("Attack");
             Respawn(currentWeapon);
 
-            Debug.Log("Shoot");
+            //Debug.Log("Shoot");
         }
 
     }
@@ -160,7 +173,7 @@ public class Bot : Character
         bulletObj.OnInit();
         //bulletObj.Moving(directionToBot, speedBullet);
         StartCoroutine(DestroyBullet(bulletObj, radius));
-        Debug.Log("Respawn");
+        //Debug.Log("Respawn");
 
     }
 

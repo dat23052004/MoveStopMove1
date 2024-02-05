@@ -28,7 +28,7 @@ public class Bullet : GameUnit
     public void OnDespawn()
     {
         SimplePool.Despawn(this);
-        Debug.Log("Despawn");
+        //Debug.Log("Despawn");
     }
 
 
