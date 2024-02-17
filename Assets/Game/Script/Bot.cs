@@ -9,7 +9,7 @@ public class Bot : Character
 {
     private NavMeshAgent navMeshAgent;
     
-    public Level level;
+    private Level level;
     
     private bool isMoving = false;
     private Weapon currentWeapon = Weapon.Arrow;
@@ -21,39 +21,62 @@ public class Bot : Character
         
         ChangeAnim("Idle");
         navMeshAgent = GetComponent<NavMeshAgent>();
+
+        level = FindObjectOfType<Level>();
         StartCoroutine(MovingToTarget());
-        StartCoroutine(RandomMovement());      
+        StartCoroutine(RandomMovement());
     }   
 
     private void Update()
     {
+        
         CheckSight();
+        if (isMoving)
+        {
+            ChangeAnim("Run");
+        }
+        else
+        {
+            ChangeAnim("Idle");
+        }
     }
 
     private IEnumerator MovingToTarget()
     {
         Debug.Log(level.pointList.Count);
-
-        for (int i = 0; i < level.pointList.Count; i++)
+        while (isRandomMovementActive)
         {
-            Debug.Log(level.pointList[i]);
-            
+            Vector3 randomDestination = GetRandomDestination();
             // Di chuyển bot đến điểm đó
-            navMeshAgent.SetDestination(level.pointList[i]);
-
+            navMeshAgent.SetDestination(randomDestination);
+            
             // Chờ đợi cho đến khi bot đến điểm đích
             while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
-            {
-                ChangeAnim("Run");
-                isMoving =false;
-                yield return null;
+            {               
+                isMoving = true;
+                yield return null;  
             }
-
+            isMoving = false;
             yield return new WaitForSeconds(1);
-            StopRandomMovement();
+            //StopRandomMovement();
             //isMoving = false;
         }
-        isRandomMovementActive = false;
+        isRandomMovementActive = true;
+    }
+
+    private Vector3 GetRandomDestination()
+    {
+        if (level.pointList.Count > 0)
+        {
+            int randomIndex = Random.Range(0, level.pointList.Count);
+            return level.pointList[randomIndex];
+        }
+        else
+        {
+            Debug.LogError("No points available in the level.pointList.");
+            // Nếu không có điểm nào trong danh sách, trả về vị trí hiện tại của bot
+            return transform.position;
+        }
     }
     private IEnumerator RandomMovement()
     {
@@ -62,7 +85,7 @@ public class Bot : Character
             if (isMoving)
             {
                 // Tính thời gian ngẫu nhiên để đứng lại (từ 4 đến 6 giây)
-                float standStillTime = Random.Range(4f, 6f);
+                float standStillTime = Random.Range(2f, 4f);
 
                 // Đứng lại
                 isMoving = false;
@@ -84,15 +107,11 @@ public class Bot : Character
         }
     }
 
-
-    private void StopRandomMovement()
-    {
-        isRandomMovementActive = false;
-    }
     public void CheckSight()
     {
         if (!isMoving)
         {
+            
 
             //Debug.Log("!Moving");
             if (CheckPosition(out Vector3 botPosition))
@@ -100,10 +119,6 @@ public class Bot : Character
 
                 Shoot();
                 //Debug.Log("Shoot");
-            }
-            else
-            {
-                ChangeAnim("Idle");
             }
         }
     }
@@ -165,9 +180,10 @@ public class Bot : Character
         }
         transform.rotation = Quaternion.LookRotation(directionToBot);
         //Quaternion bulletRotation = Quaternion.LookRotation(directionToBot);
+        ChangeAnim("Attack");
         Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);
         bulletObj.character = this;
-        ChangeAnim("Attack");
+        
         bulletObj.DirectToBot = transform.forward;
         bulletObj.botPosition = botPosition;
         bulletObj.OnInit();
@@ -192,6 +208,22 @@ public class Bot : Character
         }
     }
 
+    private IEnumerator AnimDie()
+    {
+        ChangeAnim("Dead");
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Weapon"))
+        {
+            isMoving = false;
+            StartCoroutine(AnimDie());
+            level.botList.Remove(gameObject);         
+        }    
+    }
     void OnDrawGizmos()
     {
         // Vẽ hình cầu để hiển thị vùng không gian

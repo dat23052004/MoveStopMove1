@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2312132953433483344}
   m_Layer: 0
   m_Name: Boomerang
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,9 @@ MonoBehaviour:
   poolType: 3
   rb: {fileID: -6223364499473374784}
   DirectToBot: {x: 0, y: 0, z: 0}
+  botPosition: {x: 0, y: 0, z: 0}
   speedBullet: 5
+  character: {fileID: 0}
   skin: {fileID: 6230549513748917}
 --- !u!1001 &6230549513624373
 PrefabInstance:

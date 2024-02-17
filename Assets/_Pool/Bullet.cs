@@ -28,19 +28,18 @@ public class Bullet : GameUnit
     public void OnDespawn()
     {
         SimplePool.Despawn(this);
-        //Debug.Log("Despawn");
+        Debug.Log("Despawn");
     }
 
 
     private void OnTriggerEnter(Collider other)
-    {
+    {       
+            OnDespawn();
+            character.IncreaseScale();
+            character.IncreaseRadius();
+            character.bulletAvailable = true;
+            //Debug.Log(1);
         
-        OnDespawn();
-        character.IncreaseScale();       
-        character.IncreaseRadius();
-        character.bulletAvailable = true;
-     
-
         //ParticlePool.Play(ParticleType.Hit, transform.position, Quaternion.identity);
     }
 }

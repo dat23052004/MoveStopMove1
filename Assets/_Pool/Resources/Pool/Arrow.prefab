@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5963261350496023738}
   m_Layer: 0
   m_Name: Arrow
-  m_TagString: Untagged
+  m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,9 @@ MonoBehaviour:
   poolType: 1
   rb: {fileID: 3237840985485362396}
   DirectToBot: {x: 0, y: 0, z: 0}
+  botPosition: {x: 0, y: 0, z: 0}
   speedBullet: 5
+  character: {fileID: 0}
 --- !u!1001 &4216017592012752342
 PrefabInstance:
   m_ObjectHideFlags: 0

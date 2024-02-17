@@ -8,10 +8,32 @@ public class Level : MonoBehaviour
     public float planeWidth = 10f;
     public float planeDepth = 10f;
     public List<Vector3> pointList = new List<Vector3>();
-                
+
+    public GameObject botPrefab; // Gán prefab của bot trong Inspector
+    public List<GameObject> botList = new List<GameObject>();
+    public int maxBotCount = 10;
+
     private void Awake()
     {         
         GeneratePoints();
+        
+    }
+
+    private void Start()
+    {
+        SpawnInitialBots();
+    }
+    private void Update()
+    {
+        CheckAndSpawnMoreBots();
+    }
+
+    private void SpawnInitialBots()
+    {
+        for (int i = 0; i < maxBotCount; i++)
+        {
+            SpawnBot();
+        }
     }
     public void GeneratePoints()   // Duyệt các điểm để bot đi đến lần lượt.
     {
@@ -34,6 +56,27 @@ public class Level : MonoBehaviour
 
     public void SpawnBot()
     {
+        if (botList.Count < maxBotCount)
+        {
+            // Chọn một điểm ngẫu nhiên từ danh sách
+            Vector3 spawnPoint = pointList[Random.Range(0, pointList.Count)];
 
+            // Tạo bot tại điểm đã chọn
+            GameObject newBot = Instantiate(botPrefab, spawnPoint, Quaternion.identity);
+
+            // Thêm bot vào danh sách
+            botList.Add(newBot);
+        }
     }
+
+    // Gọi hàm này khi muốn kiểm tra và spawn thêm bot
+    private void CheckAndSpawnMoreBots()
+    {
+        if (botList.Count < maxBotCount)
+        {
+            SpawnBot();
+        }
+    }
+
+    // Gọi hàm này khi muốn kiểm tra và spawn thêm bot, có thể là từ một hàm khác hoặc từ Update() chẳng hạn.
 }

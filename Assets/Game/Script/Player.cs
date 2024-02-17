@@ -86,9 +86,9 @@ public class Player : Character
         {     
             if ( collider.gameObject != gameObject && collider.CompareTag("Character"))
             {
-                Debug.LogWarning("Bot");
+                
                 position = collider.transform.position;
-                Debug.Log(position);
+                
                 //botPositions.Add(position);
                 return true;  // Trả về true nếu tìm thấy bot
             }
@@ -115,7 +115,7 @@ public class Player : Character
             bulletAvailable = false;
             bulletTime = timer;
             
-            StartCoroutine(SpawnBulletDelayed(currentWeapon, 0.3f));
+            StartCoroutine(SpawnBulletDelayed(currentWeapon, 0.1f));
       
             Debug.Log("Shoot");
         }
@@ -133,9 +133,7 @@ public class Player : Character
     private void Respawn(Weapon weaponType)
     {
         if(!isMoving)
-        {
-            
-            Debug.Log(1);
+        {      
             Vector3 directionToBot = Vector3.zero;
             if (CheckPosition(out Vector3 botPosition))
             {
@@ -148,16 +146,16 @@ public class Player : Character
             }
             transform.rotation = Quaternion.LookRotation(directionToBot);
             //Quaternion bulletRotation = Quaternion.LookRotation(directionToBot);
-            
-            Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);
             ChangeAnim("Attack");
+            Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);
+            Debug.Log("Respawn");           
             bulletObj.character = this;
             bulletObj.DirectToBot = transform.forward;
             bulletObj.botPosition = botPosition;
             bulletObj.OnInit();
             //bulletObj.Moving(directionToBot, speedBullet);
             StartCoroutine(DestroyBullet(bulletObj, radius));
-            Debug.Log("Respawn");
+            
         }
        
     }
@@ -184,5 +182,14 @@ public class Player : Character
         Gizmos.DrawWireSphere(transform.position, radius);
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Weapon"))
+        {
+            UIManager.Ins.OpenUI<Lose>();
+            GameManager.ChangeState(GameState.Lose);
+            Time.timeScale = 1;
+            
+        }
+    }
 }
