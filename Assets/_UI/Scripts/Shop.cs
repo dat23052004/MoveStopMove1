@@ -17,13 +17,20 @@ public class Shop : UICanvas
         DeactivateOtherScrollViews(scrollView1);
     }
 
-    public void OnButtonPants()
+    public void CloseButton()
+    {
+        UIManager.Ins.OpenUI<MianMenu>();
+        GameManager.ChangeState(GameState.MainMenu);
+        Time.timeScale = 1;
+        Close(0);
+    }
+    public void OnButtonHair()
     {
         ActivateScrollView(scrollView1);
         DeactivateOtherScrollViews(scrollView1);
     }
 
-    public void OnButtonHair()
+    public void OnButtonPants()
     {
         ActivateScrollView(scrollView2);
         DeactivateOtherScrollViews(scrollView2);
@@ -31,13 +38,13 @@ public class Shop : UICanvas
 
     public void OnButtonSet()
     {
-        ActivateScrollView(scrollView3);
-        DeactivateOtherScrollViews(scrollView3);
+        ActivateScrollView(scrollView4);
+        DeactivateOtherScrollViews(scrollView4);
     }
     public void OnButtonShield()
     {
-        ActivateScrollView(scrollView4);
-        DeactivateOtherScrollViews(scrollView4);
+        ActivateScrollView(scrollView3);
+        DeactivateOtherScrollViews(scrollView3);
     }
 
     private void ActivateScrollView(GameObject scrollView)

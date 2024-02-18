@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-[CreateAssetMenu(fileName = "HairData", menuName = "ScriptableObjects/HairData", order = 1)]
+[CreateAssetMenu(fileName = "Data", menuName = "Custom/Hair", order = 1)]
 public class HairData : ScriptableObject
 {   
-    public string description;
+    public string bonus;
     public int price;
+    public Sprite image;
 }

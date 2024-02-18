@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8b3cef7427f1e74787c28ba2d660bd9, type: 3}
   m_Name: HairData 3
   m_EditorClassIdentifier: 
-  description: 1% speed
-  price: 433
+  bonus: 5% Range
+  price: 400
+  image: {fileID: 21300000, guid: da18f161bc01907449ffa4e6f5b50614, type: 3}

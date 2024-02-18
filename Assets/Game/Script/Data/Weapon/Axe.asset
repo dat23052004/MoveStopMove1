@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Axe
   m_EditorClassIdentifier: 
   name: Boomerang
-  description: 1% Speed
-  priceWeapon: 200
-  weaponModel: {fileID: 6517103204923018153, guid: 726b186aececbcb4993b324cd2773f48, type: 3}
+  bonus: +2
+  description: haha
+  price: 60
+  Model: {fileID: 9166079281363681627, guid: ff8b8774b785bb341942cd495c732fcc, type: 3}
