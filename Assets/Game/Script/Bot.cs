@@ -117,7 +117,7 @@ public class Bot : Character
             if (CheckPosition(out Vector3 botPosition))
             {
 
-                Shoot();
+                //Shoot();
                 //Debug.Log("Shoot");
             }
         }
@@ -211,7 +211,7 @@ public class Bot : Character
     private IEnumerator AnimDie()
     {
         ChangeAnim("Dead");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         Destroy(gameObject);
     }
 

@@ -7,6 +7,7 @@ public class GamePlay : UICanvas
     public void SettingButton()
     {
         UIManager.Ins.OpenUI<Setting>();
+        GameManager.ChangeState(GameState.Setting);
         Time.timeScale = 0;
         Close(0);
     }

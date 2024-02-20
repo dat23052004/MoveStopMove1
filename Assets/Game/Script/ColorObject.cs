@@ -6,7 +6,7 @@ public enum ColorType { Blue, Red, Yellow, Green, Violet }
 public class ColorObject : MonoBehaviour
 {
     public ColorType colorType;
-    [SerializeField] private Renderer Renderer;
+    private Renderer Renderer;
     public Material[] colorMats;
 
     public void ChangeColor(ColorType colorType)

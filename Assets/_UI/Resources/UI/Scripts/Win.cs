@@ -10,6 +10,7 @@ public class Win : UICanvas
     public void MainMenuButton()
     {
         UIManager.Ins.OpenUI<MianMenu>();
+        GameManager.ChangeState(GameState.MainMenu);
         Close(0);
     }
 }

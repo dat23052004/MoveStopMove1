@@ -82,6 +82,7 @@ MonoBehaviour:
   bulletAvailable: 1
   Sight_Can_Shoot: {fileID: 4776911991494398157}
   scaleIncrease: {x: 0.01, y: 0.01, z: 0.01}
+  scaleSight: {x: 0.08, y: 0.08, z: 0.08}
 --- !u!195 &3894638585803896193
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -167,7 +168,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3894638586651090823}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

@@ -39,7 +39,7 @@ public class Character : ColorObject
     public void IncreaseScale()
     {
         // Tăng kích thước của đối tượng
-        transform.localScale += scaleIncrease;
+        //transform.localScale += scaleIncrease;
         
     }
 

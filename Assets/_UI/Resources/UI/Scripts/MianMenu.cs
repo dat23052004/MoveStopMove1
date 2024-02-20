@@ -6,7 +6,7 @@ public class MianMenu : UICanvas
 {
     public void PlayButton()
     {
-        UIManager.Ins.OpenUI<GamePlay>();
+        UIManager.Ins.OpenUI<GamePlay>();       
         GameManager.ChangeState(GameState.Gameplay);
         Time.timeScale = 1;
         Close(0);

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+
 
 public enum Weapon
 {
@@ -12,16 +14,16 @@ public class Player : Character
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private FloatingJoystick joystick;
-    [SerializeField] private LayerMask groundLayer;
+
+    [SerializeField]private LayerMask groundLayer;
     private bool isMoving = false;
     
     [SerializeField] List<Weapon> weapons;
     private Weapon currentWeapon = Weapon.Axe;
-    List<Vector3> botPositions = new List<Vector3>();
-   
-   
+    //List<Vector3> botPositions = new List<Vector3>();
 
-
+    private Coroutine shootingCoroutine;
+    private bool isMovingDuringDelay = false;
     private void Start()
     {
         ChangeAnim("Idle");
@@ -58,7 +60,11 @@ public class Player : Character
         if (movement.magnitude > 0)
         {
             transform.rotation = Quaternion.LookRotation(movement);
-
+            isMovingDuringDelay = true;
+        }
+        else
+        {
+            isMovingDuringDelay = false;
         }
 
     }
@@ -68,13 +74,22 @@ public class Player : Character
         if (!isMoving)
         {
             ChangeAnim("Idle");
-            
-            //Debug.Log("!Moving");
+            Debug.Log("Idle");          
             if (CheckPosition(out Vector3 botPosition))
             {
-                
-                Shoot();
-                //Debug.Log("Shoot");
+                Debug.Log(1);
+                ChangeAnim("Attack");
+                Debug.Log(shootingCoroutine);
+                if (shootingCoroutine == null)
+                {
+                    Debug.Log(2);
+                    Shoot(botPosition,0.2f);
+                }
+                else
+                {
+                    Debug.Log(shootingCoroutine);
+                }
+
             }           
         }
     }    
@@ -105,60 +120,69 @@ public class Player : Character
             yield return null;
         }      
         SimplePool.Despawn(bulletObj);
-        Debug.Log("Despawn");
+        Debug.Log("Despawn1");
         bulletAvailable = true;
     }
-    public void Shoot()
+    //public IEnumerator Shoot(Vector3 botPosition, float delay)
+    //{
+
+    //    yield return new WaitForSeconds(delay);
+    //    if (bulletAvailable && !isMovingDuringDelay)
+    //    {
+    //        bulletAvailable = false;
+    //        bulletTime = timer;
+    //        Respawn(currentWeapon, botPosition);
+    //        Debug.Log("Shoot");
+    //        shootingCoroutine = null;
+    //        Debug.Log(3);
+    //    }              
+    //}
+
+    public void Shoot(Vector3 botPosition, float delay)
     {
-        if (bulletAvailable)
+        // Kiểm tra xem có coroutine nào đang chạy hay không
+        if (shootingCoroutine == null)
         {
-            bulletAvailable = false;
-            bulletTime = timer;
-            
-            StartCoroutine(SpawnBulletDelayed(currentWeapon, 0.1f));
-      
-            Debug.Log("Shoot");
+            // Khởi tạo coroutine và gán tham chiếu vào biến
+            shootingCoroutine = StartCoroutine(ShootCoroutine(botPosition, delay));
         }
-                
+        else
+        {
+            Debug.Log("Coroutine is already running");
+        }
     }
 
-    private IEnumerator SpawnBulletDelayed(Weapon weaponType, float delay)
+    private IEnumerator ShootCoroutine(Vector3 botPosition, float delay)
     {
         yield return new WaitForSeconds(delay);
 
-        Respawn(weaponType);
-
-        Debug.Log("Bullet Spawned after delay");
-    }
-    private void Respawn(Weapon weaponType)
-    {
-        if(!isMoving)
-        {      
-            Vector3 directionToBot = Vector3.zero;
-            if (CheckPosition(out Vector3 botPosition))
-            {
-                directionToBot = (botPosition - transform.position).normalized;
-
-            }
-            else
-            {
-                return;
-            }
-            transform.rotation = Quaternion.LookRotation(directionToBot);
-            //Quaternion bulletRotation = Quaternion.LookRotation(directionToBot);
-            ChangeAnim("Attack");
-            Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);
-            Debug.Log("Respawn");           
-            bulletObj.character = this;
-            bulletObj.DirectToBot = transform.forward;
-            bulletObj.botPosition = botPosition;
-            bulletObj.OnInit();
-            //bulletObj.Moving(directionToBot, speedBullet);
-            StartCoroutine(DestroyBullet(bulletObj, radius));
-            
+        if (bulletAvailable && !isMovingDuringDelay)
+        {
+            bulletAvailable = false;
+            bulletTime = timer;
+            Respawn(currentWeapon, botPosition);
+            Debug.Log("Shoot");
         }
-       
+
+        // Coroutine đã hoàn thành, đặt biến tham chiếu thành null
+        shootingCoroutine = null;
+        Debug.Log(3);
     }
+
+    private void Respawn(Weapon weaponType, Vector3 botPosition)
+    {
+        Debug.Log("Rsp");
+        Vector3 directionToBot = (botPosition - transform.position).normalized;
+        transform.rotation = Quaternion.LookRotation(directionToBot);    
+        Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);
+        Debug.Log("Respawn");
+        bulletObj.character = this;
+        bulletObj.DirectToBot = transform.forward;
+        bulletObj.botPosition = botPosition;
+        bulletObj.OnInit();
+        StartCoroutine(DestroyBullet(bulletObj, radius));
+    }
+
 
     private PoolType GetTypeWeapon(Weapon weaponType)
     {
@@ -188,8 +212,7 @@ public class Player : Character
         {
             UIManager.Ins.OpenUI<Lose>();
             GameManager.ChangeState(GameState.Lose);
-            Time.timeScale = 1;
-            
+            Time.timeScale = 1;            
         }
     }
 }

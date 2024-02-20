@@ -22,8 +22,7 @@ public class Bullet : GameUnit
 
     public virtual void Moving()
     {
-        rb.velocity = DirectToBot * speedBullet;
-        
+        rb.velocity = DirectToBot * speedBullet;       
     }
     public void OnDespawn()
     {

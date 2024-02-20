@@ -17,6 +17,7 @@ public class ScriptableObjectChanger : MonoBehaviour
     public void ChangeScriptableObject(int _change)
     {
         currentIndex += _change;
+        Debug.Log(currentIndex.ToString());
         if(currentIndex < 0 ) currentIndex = scriptableObjects.Length-1;
         else if(currentIndex > scriptableObjects.Length-1) currentIndex = 0;
 
