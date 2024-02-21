@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4625384344160508889
 RectTransform:
   m_ObjectHideFlags: 0
@@ -486,7 +486,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1988822890680757812}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &2722414639780995273
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,7 +496,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6938905020495116969}
-  - component: {fileID: 2640492602228897525}
   m_Layer: 5
   m_Name: ChageWeapon
   m_TagString: Untagged
@@ -526,23 +525,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &2640492602228897525
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2722414639780995273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea09ab3a3af508341872f50aec24b029, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scriptableObjects:
-  - {fileID: 11400000, guid: 65e67927c5dbcdc488912c1f3e997773, type: 2}
-  - {fileID: 11400000, guid: 016c76482590b3243ad451849d030c4f, type: 2}
-  - {fileID: 11400000, guid: d630214102dca214fb0331b483e96155, type: 2}
-  weaponDisplay: {fileID: 2164665821875799593}
 --- !u!1 &2975191186810966678
 GameObject:
   m_ObjectHideFlags: 0
@@ -666,9 +648,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Shop, Assembly-CSharp
-        m_MethodName: BuyBUtton
+      - m_Target: {fileID: 8700359282282363148}
+        m_TargetAssemblyTypeName: WeaponSelection, Assembly-CSharp
+        m_MethodName: BuyWeapon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -716,6 +698,7 @@ RectTransform:
   - {fileID: 1521188364248441076}
   - {fileID: 5722065262866701903}
   - {fileID: 4625384344160508889}
+  - {fileID: 1984826927079651678}
   m_Father: {fileID: 2975191188590109541}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -779,6 +762,7 @@ MonoBehaviour:
   weaponDescription: {fileID: 3033967748653088736}
   weaponPrice: {fileID: 4894852747434526619}
   weaponHolder: {fileID: 7601409382622097239}
+  coinText: {fileID: 3298248748923603636}
 --- !u!1 &2975191188590109540
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +799,6 @@ RectTransform:
   - {fileID: 2415954087757229716}
   - {fileID: 418684016360246573}
   - {fileID: 7601409382622097239}
-  - {fileID: 1984826927079651678}
   - {fileID: 5723758059835077943}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -934,8 +917,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 111}
-  m_SizeDelta: {x: 500, y: 500}
+  m_AnchoredPosition: {x: -0.000025272, y: 129}
+  m_SizeDelta: {x: 511.8969, y: 539.5337}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1270063379042982775
 CanvasRenderer:
@@ -1268,9 +1251,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1984826927079651678}
-  - component: {fileID: 8796667812615864905}
+  - component: {fileID: 8700359282282363148}
   m_Layer: 0
-  m_Name: Savemanager
+  m_Name: WeaponSelected
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1284,14 +1267,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5281555354671306570}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -396.99878, z: 0}
+  m_LocalPosition: {x: 0, y: -464.99878, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2975191188590109541}
-  m_RootOrder: 4
+  m_Father: {fileID: 2975191188184929776}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8796667812615864905
+--- !u!114 &8700359282282363148
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1300,10 +1283,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5281555354671306570}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6428eb574d9d5fe4cac7a2ac83a13ae9, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b0caf4bc6b700944846f99f44688f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrentWeapon: 0
+  weaponDisplay: {fileID: 2164665821875799593}
+  WeaponData:
+  - {fileID: 11400000, guid: 65e67927c5dbcdc488912c1f3e997773, type: 2}
+  - {fileID: 11400000, guid: 016c76482590b3243ad451849d030c4f, type: 2}
+  - {fileID: 11400000, guid: d630214102dca214fb0331b483e96155, type: 2}
+  currentCoinLeft: {fileID: 3298248748923603636}
 --- !u!1 &6011185650950074511
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,17 +1453,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6735842688460150952}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6938905020495116969}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -434, y: 35}
+  m_AnchoredPosition: {x: -454, y: 35}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &412319740527084441
@@ -1560,10 +1548,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2640492602228897525}
-        m_TargetAssemblyTypeName: ScriptableObjectChanger, Assembly-CSharp
-        m_MethodName: ChangeScriptableObject
-        m_Mode: 3
+      - m_Target: {fileID: 8700359282282363148}
+        m_TargetAssemblyTypeName: WeaponSelection, Assembly-CSharp
+        m_MethodName: PrevWeaponInShop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2220,10 +2208,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2640492602228897525}
-        m_TargetAssemblyTypeName: ScriptableObjectChanger, Assembly-CSharp
-        m_MethodName: ChangeScriptableObject
-        m_Mode: 3
+      - m_Target: {fileID: 8700359282282363148}
+        m_TargetAssemblyTypeName: WeaponSelection, Assembly-CSharp
+        m_MethodName: NextWeaponInShop
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2400,7 +2388,7 @@ RectTransform:
   - {fileID: 6530749138485829257}
   - {fileID: 3602352656657932176}
   m_Father: {fileID: 2975191188590109541}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

@@ -10,11 +10,25 @@ public class GameManager : Singleton<GameManager>
     //[SerializeField] UserData userData;
     //[SerializeField] CSVData csv;
     private static GameState gameState = GameState.MainMenu;
-
+    public UserData UserData;
     // Start is called before the first frame update
     protected void Awake()
     {
         //base.Awake();
+
+        if (SaveManager.Ins.HasData<UserData>())
+        {
+            Debug.Log("Load Data");
+            UserData = SaveManager.Ins.LoadData<UserData>();
+        }
+        else
+        {
+            Debug.Log("Created Data");
+            UserData = new UserData();
+            SaveManager.Ins.SaveData(UserData);
+        }
+
+    
         Input.multiTouchEnabled = false;
         Application.targetFrameRate = 60;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;

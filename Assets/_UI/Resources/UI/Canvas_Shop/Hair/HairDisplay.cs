@@ -17,8 +17,6 @@ public class HairDisplay : MonoBehaviour
         
         HairBonus.text = HairData.bonus;       
         HairPrice.text = HairData.price.ToString();
-        HairImage.sprite = HairData.image;
-
-        
+        HairImage.sprite = HairData.image;       
     }   
 }
