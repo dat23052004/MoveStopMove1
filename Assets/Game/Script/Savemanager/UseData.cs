@@ -34,6 +34,13 @@ public class UserData
     public List<int> BoughtPants { get => boughtPants; set { boughtPants = value; } }
 
     [SerializeField]
+    private List<int> boughtShields = new List<int>();
+    public List<int> BoughtShields { get => boughtShields; set { boughtShields = value; } }
+
+    [SerializeField]
+    private List<int> boughtSets = new List<int>();
+    public List<int> BoughtSets{ get => boughtSets; set { boughtSets = value; } }
+    [SerializeField]
     private string username = "New Player";
     public string Username { get => username; set { username = value; } }
 

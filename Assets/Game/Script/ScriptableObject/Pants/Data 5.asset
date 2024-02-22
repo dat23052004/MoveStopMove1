@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Data 5
   m_EditorClassIdentifier: 
   bonus: 8% Move Speed
-  price: 6
+  price: 60
   image: {fileID: 21300000, guid: ea8161e4ed231be438fe9e968bc8752c, type: 3}

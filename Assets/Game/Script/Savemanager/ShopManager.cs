@@ -39,6 +39,12 @@ public enum ShieldType
     CaptainShield = 2
 }
 
+public enum SetType
+{
+    Default = 0,
+    Shield = 1,
+    CaptainShield = 2
+}
 
 
 public enum Weapon

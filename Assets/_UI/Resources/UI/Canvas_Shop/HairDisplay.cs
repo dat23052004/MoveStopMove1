@@ -11,12 +11,22 @@ public class HairDisplay : MonoBehaviour
     [SerializeField] private TextMeshProUGUI HairBonus;   
     [SerializeField] private TextMeshProUGUI HairPrice;
     [SerializeField] private Image HairImage;
+    [SerializeField] private TextMeshProUGUI coinText;
 
-    public void DisplayHair(HairData HairData)
+    public void DisplayHairAndUpdatCoint(HairData hairData, UserData userData)
     {
-        
-        HairBonus.text = HairData.bonus;       
+        DisplayHair(hairData);
+        UpdateCoin(userData);
+    }
+    public void DisplayHair(HairData HairData)
+    {        
+        HairBonus.text = HairData.bonus;
         HairPrice.text = HairData.price.ToString();
         HairImage.sprite = HairData.image;       
-    }   
+    }
+
+    private void UpdateCoin(UserData userData)
+    {
+        coinText.text = userData.CurrentCoins.ToString();
+    }
 }

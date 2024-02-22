@@ -705,6 +705,7 @@ MonoBehaviour:
   - {fileID: 1875692319204509577}
   - {fileID: 3155531451368238715}
   - {fileID: 1272475848464531618}
+  currentCoinLeft: {fileID: 5248187571108546874}
 --- !u!1 &1759306409690753949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1699,8 +1700,9 @@ GameObject:
   - component: {fileID: 3683895476203105263}
   - component: {fileID: 6461787755353946949}
   - component: {fileID: 8547334933640243385}
+  - component: {fileID: 2655724095334687629}
   m_Layer: 5
-  m_Name: Price
+  m_Name: Button-Preice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1766,6 +1768,62 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2655724095334687629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3351516839898106002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 8547334933640243385}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2689826819618272402}
+        m_TargetAssemblyTypeName: ChangeItem, Assembly-CSharp
+        m_MethodName: BuyItem
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3549215795509618726
 GameObject:
   m_ObjectHideFlags: 0
@@ -3330,6 +3388,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 1375541850383047213}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &1375541850383047213 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -3491,6 +3550,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 1328706095828586045}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &1328706095828586045 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -3640,6 +3700,7 @@ MonoBehaviour:
   SetBonus: {fileID: 5707753245009546890}
   SetPrice: {fileID: 9173115264148490792}
   SetImage: {fileID: 2074321425669166645}
+  coinText: {fileID: 0}
 --- !u!114 &2074321425669166645 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -3801,6 +3862,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 2251208497883089933}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &2251208497883089933 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -3962,6 +4024,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 2220944952745722693}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &2220944952745722693 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -4122,6 +4185,7 @@ MonoBehaviour:
   SetBonus: {fileID: 5707753245009546890}
   SetPrice: {fileID: 9173115264148490792}
   SetImage: {fileID: 42553198805475690}
+  coinText: {fileID: 0}
 --- !u!224 &5553694116917476991 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6681840578843884402, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -4271,6 +4335,7 @@ MonoBehaviour:
   ShieldBonus: {fileID: 5707753245009546890}
   ShieldPrice: {fileID: 9173115264148490792}
   ShieldImage: {fileID: 695772485134141193}
+  coinText: {fileID: 0}
 --- !u!224 &4909596309196429340 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6681840578843884402, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -4432,6 +4497,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 805509934237384198}
+  coinText: {fileID: 5248187571108546874}
 --- !u!224 &5091387218716909843 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6681840578843884402, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -4578,6 +4644,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 3573843677787452578}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &3573843677787452578 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -4738,6 +4805,7 @@ MonoBehaviour:
   SetBonus: {fileID: 5707753245009546890}
   SetPrice: {fileID: 9173115264148490792}
   SetImage: {fileID: 2639800830522767494}
+  coinText: {fileID: 0}
 --- !u!224 &7577295829741250451 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6681840578843884402, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -4887,6 +4955,7 @@ MonoBehaviour:
   SetBonus: {fileID: 5707753245009546890}
   SetPrice: {fileID: 9173115264148490792}
   SetImage: {fileID: 3049657696818074848}
+  coinText: {fileID: 0}
 --- !u!224 &7482463819494657013 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6681840578843884402, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -5044,6 +5113,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 3088433340316235242}
+  coinText: {fileID: 5248187571108546874}
 --- !u!224 &7447215961768471295 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6681840578843884402, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -5205,6 +5275,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 3382903157017697911}
+  coinText: {fileID: 5248187571108546874}
 --- !u!224 &7167477467924906338 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6681840578843884402, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -5360,6 +5431,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 6174694565538561178}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &6174694565538561178 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -5505,6 +5577,7 @@ MonoBehaviour:
   SetBonus: {fileID: 5707753245009546890}
   SetPrice: {fileID: 9173115264148490792}
   SetImage: {fileID: 6344440960767218992}
+  coinText: {fileID: 0}
 --- !u!114 &6344440960767218992 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -5666,6 +5739,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 6762290072548468309}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &6762290072548468309 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -5827,6 +5901,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 6827381383801130293}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &6827381383801130293 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -5999,6 +6074,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 5039359195622825311}
+  coinText: {fileID: 5248187571108546874}
 --- !u!1001 &7646885902010547564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6149,6 +6225,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 8872119969393006859}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &8872119969393006859 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -6294,6 +6371,7 @@ MonoBehaviour:
   ShieldBonus: {fileID: 5707753245009546890}
   ShieldPrice: {fileID: 9173115264148490792}
   ShieldImage: {fileID: 8805684225762401526}
+  coinText: {fileID: 0}
 --- !u!114 &8805684225762401526 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -6455,6 +6533,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 8826745225751283308}
+  coinText: {fileID: 5248187571108546874}
 --- !u!114 &8826745225751283308 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1242756198316778599, guid: 3674c593e8fba9d468e03d8a32273172, type: 3}
@@ -6627,6 +6706,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 7129002352643144680}
+  coinText: {fileID: 5248187571108546874}
 --- !u!1001 &8357625704693447459
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6788,6 +6868,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 7116646604999434052}
+  coinText: {fileID: 5248187571108546874}
 --- !u!1001 &8498694218011047005
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6949,6 +7030,7 @@ MonoBehaviour:
   PantBonus: {fileID: 5707753245009546890}
   PantPrice: {fileID: 9173115264148490792}
   pantImage: {fileID: 7263819602510008378}
+  coinText: {fileID: 5248187571108546874}
 --- !u!1001 &8670157692849924167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7110,6 +7192,7 @@ MonoBehaviour:
   HairBonus: {fileID: 5707753245009546890}
   HairPrice: {fileID: 9173115264148490792}
   HairImage: {fileID: 7596937404697971744}
+  coinText: {fileID: 5248187571108546874}
 --- !u!1001 &8971606783629808285
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7259,3 +7342,4 @@ MonoBehaviour:
   SetBonus: {fileID: 5707753245009546890}
   SetPrice: {fileID: 9173115264148490792}
   SetImage: {fileID: 7907939395895523066}
+  coinText: {fileID: 0}

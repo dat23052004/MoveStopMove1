@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: HairData 6
   m_EditorClassIdentifier: 
   bonus: 5% Range
-  price: 700
+  price: 70
   image: {fileID: 21300000, guid: 703801d9a7f60c244a3ee076f49edb23, type: 3}

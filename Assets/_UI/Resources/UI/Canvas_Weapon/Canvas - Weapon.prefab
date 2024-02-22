@@ -1287,10 +1287,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDisplay: {fileID: 2164665821875799593}
-  WeaponData:
-  - {fileID: 11400000, guid: 65e67927c5dbcdc488912c1f3e997773, type: 2}
-  - {fileID: 11400000, guid: 016c76482590b3243ad451849d030c4f, type: 2}
-  - {fileID: 11400000, guid: d630214102dca214fb0331b483e96155, type: 2}
+  weaponData:
+  - {fileID: 11400000, guid: e333add83b2830042b82e81d686ef6ef, type: 2}
+  - {fileID: 11400000, guid: 18e75d47e6e7d7c419b1fdc2fa4fb442, type: 2}
+  - {fileID: 11400000, guid: 1371b2f2326f2504fb07488e69290702, type: 2}
   currentCoinLeft: {fileID: 3298248748923603636}
 --- !u!1 &6011185650950074511
 GameObject:

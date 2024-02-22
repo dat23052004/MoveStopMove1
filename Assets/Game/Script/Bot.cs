@@ -43,7 +43,6 @@ public class Bot : Character
 
     private IEnumerator MovingToTarget()
     {
-        Debug.Log(level.pointList.Count);
         while (isRandomMovementActive)
         {
             Vector3 randomDestination = GetRandomDestination();
