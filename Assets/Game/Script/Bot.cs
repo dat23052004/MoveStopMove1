@@ -165,7 +165,7 @@ public class Bot : Character
     }
 
 
-    private void Respawn(Weapon weaponType)
+    private void Respawn(PoolType weaponType)
     {
         Vector3 directionToBot = Vector3.zero;
         if (CheckPosition(out Vector3 botPosition))
@@ -192,15 +192,15 @@ public class Bot : Character
 
     }
 
-    private PoolType GetTypeWeapon(Weapon weaponType)
+    private PoolType GetTypeWeapon(WeaponType weaponType)
     {
         switch (weaponType)
         {
-            case Weapon.Arrow:
+            case WeaponType.Arrow:
                 return PoolType.Arrow;
-            case Weapon.Axe:
+            case WeaponType.Axe:
                 return PoolType.Axe;
-            case Weapon.Boomerang:
+            case WeaponType.Boomerang:
                 return PoolType.Boomerang;
             default:
                 return 0;

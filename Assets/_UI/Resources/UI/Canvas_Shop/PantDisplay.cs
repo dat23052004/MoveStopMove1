@@ -27,4 +27,8 @@ public class PantDisplay : MonoBehaviour
     {
         coinText.text = userData.CurrentCoins.ToString();
     }
+    public void Equiped()
+    {
+        PantPrice.SetText(Constant.EQUIP_SKIN);
+    }
 }

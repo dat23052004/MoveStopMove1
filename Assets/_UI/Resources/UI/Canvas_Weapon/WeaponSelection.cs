@@ -21,6 +21,7 @@ public class WeaponSelection : Singleton<WeaponSelection>
 
     private void Update()
     {
+        SetWeaponsAvailability(currentWeapShownIndex);
         Debug.Log(currentWeapShownIndex);
     }
 
@@ -76,5 +77,12 @@ public class WeaponSelection : Singleton<WeaponSelection>
     private void ShowWeaponAndCoin(Weapon weapon)
     {
         weaponDisplay.DisplayWeaponAndCoin(weaponData[(int)weapon], data);
+    }
+    private void SetWeaponsAvailability( Weapon currentWeaponType)
+    {
+        if (data.BoughtWeapons.Contains((int)currentWeaponType))
+        {
+            weaponDisplay.Equiped();
+        }
     }
 }

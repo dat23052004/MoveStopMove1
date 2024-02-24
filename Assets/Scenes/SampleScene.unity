@@ -1086,12 +1086,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UserData:
     equippedWeapon: 0
-    equippedHat: 1
+    equippedHat: 0
     equippedPant: 0
     currentCoins: 10000
     boughtWeapons: 00000000
     boughtHats: 01000000
     boughtPants: 00000000
+    boughtShields: 
+    boughtSets: 
     username: Tien Dat
 --- !u!1 &1273396661
 GameObject:

@@ -10,7 +10,6 @@ public class Shop : UICanvas
     public GameObject scrollView3;
     public GameObject scrollView4;
 
-
     private void Start()
     {
         ActivateScrollView(scrollView1);

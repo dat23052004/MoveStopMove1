@@ -51,7 +51,7 @@ public class UserData
         EquippedPant = 0;
         CurrentCoins = 10000;
         BoughtWeapons.Add(0);
-        BoughtHats.Add(1);
+        BoughtHats.Add(0);
         BoughtPants.Add(0);
         Username = "Tien Dat";
 

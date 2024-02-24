@@ -27,4 +27,8 @@ public class ShieldDisplay : MonoBehaviour
     {
         coinText.text = userData.CurrentCoins.ToString();
     }
+    public void Equiped()
+    {
+        ShieldPrice.SetText(Constant.EQUIP_SKIN);
+    }
 }

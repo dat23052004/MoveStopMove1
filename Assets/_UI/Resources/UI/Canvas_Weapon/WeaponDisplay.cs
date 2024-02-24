@@ -64,4 +64,9 @@ public class WeaponDisplay : MonoBehaviour
     {
         coinText.text = userData.CurrentCoins.ToString();
     }
+
+    public void Equiped()
+    {
+        weaponPrice.SetText(Constant.EQUIP_SKIN);
+    }
 }

@@ -27,4 +27,9 @@ public class SetDisplay : MonoBehaviour
     {
         coinText.text = userData.CurrentCoins.ToString();
     }
+
+    public void Equiped()
+    {
+        SetPrice.SetText(Constant.EQUIP_SKIN);
+    }
 }

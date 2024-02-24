@@ -27,6 +27,11 @@ public class HairDisplay : MonoBehaviour
 
     private void UpdateCoin(UserData userData)
     {
-        coinText.text = userData.CurrentCoins.ToString();
+        coinText.text = userData.CurrentCoins.ToString();   
+    }
+
+    public void Equiped()
+    {
+        HairPrice.SetText(Constant.EQUIP_SKIN);
     }
 }

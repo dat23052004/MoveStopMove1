@@ -19,10 +19,11 @@ public class ChangeItem : Singleton<ChangeItem>
 
     public TextMeshProUGUI currentCoinLeft;
     private UserData data;
-    private HatType currentHairShownIndex = (HatType)0;
+    private HairType currentHairShownIndex = (HairType)0;
     private PantType currentPantShownIndex = (PantType)0;
     private ShieldType currentShieldShownIndex = (ShieldType)0;
     private SetType currentSetShownIndex = (SetType)0;
+    public int currentTypeItem;
 
     private void Awake()
     {
@@ -35,6 +36,11 @@ public class ChangeItem : Singleton<ChangeItem>
     private void Start()
     {
         
+    }
+
+    private void Update()
+    {
+        SetItemAvailability(currentHairShownIndex, currentPantShownIndex, currentShieldShownIndex, currentSetShownIndex);
     }
 
     public void BuyItem()
@@ -74,27 +80,27 @@ public class ChangeItem : Singleton<ChangeItem>
         }
 
         // Shield
-        if (!data.bought.Contains((int)currentPantShownIndex) && data.CurrentCoins >= pantData[(int)currentPantShownIndex].price)
-        {
-            Debug.Log(pantData[(int)currentPantShownIndex].price);
-            data.BoughtPants.Add((int)currentPantShownIndex);
-            data.CurrentCoins -= pantData[(int)currentPantShownIndex].price;
-            currentCoinLeft.SetText(data.CurrentCoins.ToString());
-            pantDisplay[(int)currentPantShownIndex].DisplayPantAndUpdatCoint(pantData[(int)currentPantShownIndex], data);
-            SaveManager.Ins.SaveData(data);
-        }
+        //if (!data.BoughtShields.Contains((int)currentPantShownIndex) && data.CurrentCoins >= pantData[(int)currentPantShownIndex].price)
+        //{
+        //    Debug.Log(pantData[(int)currentPantShownIndex].price);
+        //    data.BoughtPants.Add((int)currentPantShownIndex);
+        //    data.CurrentCoins -= pantData[(int)currentPantShownIndex].price;
+        //    currentCoinLeft.SetText(data.CurrentCoins.ToString());
+        //    pantDisplay[(int)currentPantShownIndex].DisplayPantAndUpdatCoint(pantData[(int)currentPantShownIndex], data);
+        //    SaveManager.Ins.SaveData(data);
+        //}
 
-        if (hairData[(int)currentPantShownIndex].price.ToString() == Constant.EQUIP_SKIN)
-        {
-            data.EquippedPant = (int)currentPantShownIndex;
-            SaveManager.Ins.SaveData(data);
-        }
+        //if (hairData[(int)currentPantShownIndex].price.ToString() == Constant.EQUIP_SKIN)
+        //{
+        //    data.EquippedPant = (int)currentPantShownIndex;
+        //    SaveManager.Ins.SaveData(data);
+        //}
 
     }
 
 
     // CHOOSE HAIR
-    private void ShowDisplayAndCoin_Hair(HatType type)
+    private void ShowDisplayAndCoin_Hair(HairType type)
     {
         hairDisplay[(int)type].DisplayHairAndUpdatCoint(hairData[(int)currentHairShownIndex], data);
     }
@@ -103,8 +109,9 @@ public class ChangeItem : Singleton<ChangeItem>
     {
         if (index >= 0 && index < hairData.Length)
         {
-            currentHairShownIndex = (HatType)index; // Cập nhật giá trị hiện tại
+            currentHairShownIndex = (HairType)index; // Cập nhật giá trị hiện tại
             ShowDisplayAndCoin_Hair(currentHairShownIndex);
+            currentTypeItem = 0;
         }
         else
         {
@@ -115,7 +122,7 @@ public class ChangeItem : Singleton<ChangeItem>
     {
         for (int i = 0; i < pantData.Length; i++)
         {
-            hairDisplay[i].DisplayHair(hairData[i]);
+            hairDisplay[i].DisplayHair(hairData[i]);           
         }
     }
 
@@ -132,6 +139,7 @@ public class ChangeItem : Singleton<ChangeItem>
         {
             currentPantShownIndex = (PantType)index; // Cập nhật giá trị hiện tại
             ShowDisplayAndCoin_Pant(currentPantShownIndex);
+            currentTypeItem = 1;
         }
         else
         {
@@ -158,6 +166,7 @@ public class ChangeItem : Singleton<ChangeItem>
         {
             currentShieldShownIndex = (ShieldType)index; // Cập nhật giá trị hiện tại
             ShowDisplayAndCoin_Shield(currentShieldShownIndex);
+            currentTypeItem = 2;
         }
         else
         {
@@ -185,6 +194,7 @@ public class ChangeItem : Singleton<ChangeItem>
         {
             currentSetShownIndex = (SetType)index; // Cập nhật giá trị hiện tại
             ShowDisplayAndCoin_Set(currentSetShownIndex);
+            currentTypeItem = 3;
         }
         else
         {
@@ -199,5 +209,37 @@ public class ChangeItem : Singleton<ChangeItem>
         }
     }
 
+    private void SetItemAvailability(HairType currentHair, PantType currentPant, ShieldType currentShield, SetType currentSet)
+    {
+        if(currentTypeItem == 0)
+        {
+            if (data.BoughtHats.Contains((int)currentHair))
+            {
+                hairDisplay[(int)currentHair].Equiped();
+            }
+        }
+        else if (currentTypeItem == 1)
+        {
+            if (data.BoughtPants.Contains((int)currentPant))
+            {
+                pantDisplay[(int)currentPant].Equiped();
+            }
+            
+        }
 
+        else if(currentTypeItem == 2)
+        {
+            if (data.BoughtShields.Contains((int)currentShield))
+            {
+                shieldDisplay[(int)currentShieldShownIndex].Equiped();
+            }
+        }        
+        else
+        {
+            if (data.BoughtSets.Contains((int)currentSet))
+            {
+                setDisplay[(int)currentSetShownIndex].Equiped();
+            }
+        }      
+    }
 }
