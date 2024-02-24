@@ -53,11 +53,23 @@ public class WeaponDisplay : MonoBehaviour
         weaponBonus.text = weaponData.bonus;
         weaponDescription.text = weaponData.description;
         weaponPrice.text = weaponData.price.ToString();
-
         if (weaponHolder.childCount > 0)
             Destroy(weaponHolder.GetChild(0).gameObject);
 
         Instantiate(weaponData.Model, weaponHolder.position, weaponHolder.rotation, weaponHolder);
+    }
+
+    public bool CanChange()
+    {
+        if(weaponPrice.text == Constant.EQUIP_SKIN)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+       
     }
 
     private void UpdateCoin(UserData userData)

@@ -56,10 +56,12 @@ public class ChangeItem : Singleton<ChangeItem>
             SaveManager.Ins.SaveData(data);
         }
 
-        if (hairData[(int)currentHairShownIndex].price.ToString() == Constant.EQUIP_SKIN)
+        if (hairDisplay[(int)currentHairShownIndex].CanChange())
         {
+            Debug.Log(123);
             data.EquippedHat = (int)currentHairShownIndex;
             SaveManager.Ins.SaveData(data);
+            LevelManager.Ins.player.ChangeHair();
         }
 
         // Pant
@@ -73,10 +75,11 @@ public class ChangeItem : Singleton<ChangeItem>
             SaveManager.Ins.SaveData(data);
         }
 
-        if (pantData[(int)currentPantShownIndex].price.ToString() == Constant.EQUIP_SKIN)
+        if (pantDisplay[(int)currentPantShownIndex].CanChange())
         {
             data.EquippedPant = (int)currentPantShownIndex;
             SaveManager.Ins.SaveData(data);
+            LevelManager.Ins.player.ChangePant();
         }
 
         // Shield

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.LightingExplorerTableColumn;
 
 public class Player : Character
 {
@@ -10,22 +11,24 @@ public class Player : Character
 
     [SerializeField]private LayerMask groundLayer;
     private bool isMoving = false;
-    
-    [SerializeField] List<Weapon> weapons;
-    private Weapon currentWeapon = Weapon.Axe;
+  
+    private WeaponType currentWeapon = WeaponType.Axe;
 
     private Coroutine shootingCoroutine;
     private bool isMovingDuringDelay = false;
     private void Start()
-    {
+    {       
+        base.OnInit();
         ChangeAnim("Idle");      
     }
-    private void Update()
+    protected override void Update()
     {
-        
+        //ChangeWeapon();
         Moving();
         CheckSight();             
     }
+
+
     public void Moving()
     {
         Vector3 movement = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
@@ -55,9 +58,8 @@ public class Player : Character
             ChangeAnim("Idle");
             isMovingDuringDelay = false;
         }
-
     }
-    
+
     public void CheckSight()
     {
         if (!isMoving)
@@ -148,7 +150,7 @@ public class Player : Character
         shootingCoroutine = null;
     }
 
-    private void Respawn(Weapon weaponType, Vector3 botPosition)
+    private void Respawn(WeaponType weaponType, Vector3 botPosition)
     {
         //Vector3 directionToBot = (botPosition - transform.position).normalized;
         //transform.rotation = Quaternion.LookRotation(directionToBot);    
@@ -161,15 +163,15 @@ public class Player : Character
     }
 
 
-    private PoolType GetTypeWeapon(Weapon weaponType)
+    private PoolType GetTypeWeapon(WeaponType weaponType)
     {
         switch (weaponType)
         {
-            case Weapon.Arrow:
+            case WeaponType.Arrow:
                 return PoolType.Arrow;
-            case Weapon.Axe:
+            case WeaponType.Axe:
                 return PoolType.Axe;
-            case Weapon.Boomerang:
+            case WeaponType.Boomerang:
                 return PoolType.Boomerang;
             default:
                 return 0;

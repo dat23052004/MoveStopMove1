@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public enum PantType
 {
-    Default = 0,
+    Pant_0 = 0,
     Pant_1 = 1,
     Pant_2 = 2,
     Pant_3 = 3,
@@ -18,18 +18,17 @@ public enum PantType
     Pant_9 = 9
 }
 
-public enum HatType
-{
-    Default = 0,
-    Cap = 1,
-    Cowboy = 2,
-    Crown = 3,
-    Ear = 4,
-    Arrow = 5,
-    Horn = 6,
-    headPhone = 7,
-    PoliceCap = 8,
-    StrawHat = 9
+public enum HairType
+{   
+    Cap = 0,
+    Cowboy = 1,
+    Crown = 2,
+    Ear = 3,
+    Arrow = 4,
+    Horn = 5,
+    headPhone = 6,
+    PoliceCap = 7,
+    StrawHat = 8,
 }
 
 public enum ShieldType
@@ -47,7 +46,7 @@ public enum SetType
 }
 
 
-public enum Weapon
+public enum WeaponType
 {
     Arrow = 0,
     Axe = 1,

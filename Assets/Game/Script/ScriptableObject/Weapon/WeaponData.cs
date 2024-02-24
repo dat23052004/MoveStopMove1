@@ -10,5 +10,6 @@ public class WeaponData : ScriptableObject
     public string description;
     public int price;
     public GameObject Model;
-
+    public Weapon weapon;
+    public WeaponType weaponType;
 }

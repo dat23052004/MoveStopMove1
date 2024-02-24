@@ -11,8 +11,8 @@ public class WeaponSelection : Singleton<WeaponSelection>
     [SerializeField] public WeaponData[] weaponData;
     public TextMeshProUGUI currentCoinLeft;
     private UserData data;
-    private Weapon currentWeapShownIndex = (Weapon)0; 
-
+    private WeaponType currentWeapShownIndex = (WeaponType)0;
+    private bool canChange = false;
     private void Start()
     {
         data = GameManager.Ins.UserData;
@@ -22,7 +22,7 @@ public class WeaponSelection : Singleton<WeaponSelection>
     private void Update()
     {
         SetWeaponsAvailability(currentWeapShownIndex);
-        Debug.Log(currentWeapShownIndex);
+  
     }
 
     public void BuyWeapon()
@@ -37,18 +37,19 @@ public class WeaponSelection : Singleton<WeaponSelection>
             SaveManager.Ins.SaveData(data);
         }
 
-        if (weaponData[(int)currentWeapShownIndex].price.ToString() == Constant.EQUIP_SKIN)
+        if (weaponDisplay.CanChange())
         {
             data.EquippedWeapon = (int)currentWeapShownIndex;
             SaveManager.Ins.SaveData(data);
+            LevelManager.Ins.player.ChangeWeapon();
         }
     }
 
     public void NextWeaponInShop()
     {
-        if (currentWeapShownIndex == (Weapon)2)
+        if (currentWeapShownIndex == (WeaponType)2)
         {
-            currentWeapShownIndex = (Weapon)0;
+            currentWeapShownIndex = (WeaponType)0;
             ShowWeaponAndCoin(currentWeapShownIndex);
         }
         else
@@ -61,10 +62,10 @@ public class WeaponSelection : Singleton<WeaponSelection>
     public void PrevWeaponInShop()
     {
         print(1);
-        if (currentWeapShownIndex == (Weapon)0)
+        if (currentWeapShownIndex == (WeaponType)0)
         {
             print(1);
-            currentWeapShownIndex = (Weapon)2;
+            currentWeapShownIndex = (WeaponType)2;
             ShowWeaponAndCoin(currentWeapShownIndex);
         }
         else
@@ -74,11 +75,11 @@ public class WeaponSelection : Singleton<WeaponSelection>
             ShowWeaponAndCoin(currentWeapShownIndex);
         }
     }
-    private void ShowWeaponAndCoin(Weapon weapon)
+    private void ShowWeaponAndCoin(WeaponType weapon)
     {
         weaponDisplay.DisplayWeaponAndCoin(weaponData[(int)weapon], data);
     }
-    private void SetWeaponsAvailability( Weapon currentWeaponType)
+    private void SetWeaponsAvailability(WeaponType currentWeaponType)
     {
         if (data.BoughtWeapons.Contains((int)currentWeaponType))
         {

@@ -1,33 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.LightingExplorerTableColumn;
 
 public class DataManager : Singleton<DataManager>
 {
     public WeaponData[] weaponData;
-    public WeaponData[] hatData;
+    public HairData[] hairData;
     public PantData[] pantData;
-
-
-    //public WeaponData GetWeaponData(WeaponType weaponType)
-    //{
-    //    List<WeaponData> weaponData = weaponDataSO.weaponDataList;
-    //    for (int i = 0; i < weaponData.Count; i++)
-    //    {
-    //        if(weaponType == weaponData[i].weaponType)
-    //        {
-    //            //return weaponData[i];
-    //            return weaponData[i].Clone();
-    //        }
-    //    }
-
-    //    return null;
-    //}
 
     public WeaponData GetWeaponData(int weaponIndex)
     {
         return weaponData[weaponIndex];
     }
+    public HairData GetHatData(int HairData)
+    {
+        return hairData[HairData];
 
-    
+    }
+
+    public PantData GetPantData(int PantIndex)
+    {
+        return pantData[PantIndex];
+
+    }
+
 }

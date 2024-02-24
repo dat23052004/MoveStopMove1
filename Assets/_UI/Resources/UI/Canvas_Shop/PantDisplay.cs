@@ -22,6 +22,18 @@ public class PantDisplay : MonoBehaviour
         PantPrice.text = PantData.price.ToString();
         pantImage.sprite = PantData.image;
     }
+    public bool CanChange()
+    {
+        if (PantPrice.text == Constant.EQUIP_SKIN)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 
     private void UpdateCoin(UserData userData)
     {

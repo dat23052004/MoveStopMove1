@@ -5,23 +5,93 @@ using UnityEngine;
 public class Character : ColorObject
 {
     [SerializeField] public float moveSpeed;
-    public float radius = 5;
-    
-    public Transform SpawnBullet;
-
+    [SerializeField] Animator anim;
     [SerializeField] public float timer = 2;
     protected float bulletTime;
     protected float speedBullet = 4;
+    public float radius = 5;
+    public Transform SpawnBullet;
 
     protected string currentAnim;
-    public Animator anim;
-
     public bool bulletAvailable = true;
 
     [SerializeField] GameObject Sight_Can_Shoot;
     [SerializeField] Vector3 scaleIncrease = new Vector3(0.01f, 0.01f, 0.01f);
     [SerializeField] Vector3 scaleSight= new Vector3(0.08f, 0.08f, 0.08f);
-    
+
+    [SerializeField] protected Transform weaponHoldingPos;
+    [SerializeField] protected WeaponData weaponData;
+    [SerializeField] protected PantData pantData;
+    [SerializeField] protected HairData hairData;
+    protected Weapon weaponInstance;
+    public GameObject hairInstance;
+    public Transform hatPos;
+    public SkinnedMeshRenderer pantInstance;
+
+
+    protected virtual void Update()
+    {
+        
+    }
+    protected virtual void OnInit()
+    {        
+        //this.gameObject.layer = charLayerNumber;
+        ChangeAnim(Constant.ANIM_IDLE);
+
+        if (weaponData != null)
+        {
+            ChangeWeapon();
+        }
+        if (hairData != null)
+        {
+            ChangeHair();
+        }
+        if (pantData != null)
+        {
+            ChangePant();
+        }
+    }
+    public void ChangeWeapon()
+    {
+        
+        weaponData = DataManager.Ins.GetWeaponData(GameManager.Ins.UserData.EquippedWeapon);
+        if (weaponInstance == null)
+        {
+            weaponInstance = Instantiate(weaponData.weapon, weaponHoldingPos.position, weaponHoldingPos.rotation);
+        }
+        else
+        {
+            Destroy(weaponInstance.gameObject);
+            weaponInstance = Instantiate(weaponData.weapon, weaponHoldingPos.position, weaponHoldingPos.rotation);
+        }
+        weaponInstance.transform.parent = weaponHoldingPos;
+        //SetAttackRange();
+        //SetAttackSpeed();
+    }
+
+    public void ChangeHair()
+    {        
+        hairData = DataManager.Ins.GetHatData(GameManager.Ins.UserData.EquippedHat);        
+        if (hairInstance == null)
+        {
+            Debug.Log(10);
+            hairInstance = Instantiate(hairData.hairPrefab, hatPos);
+        }
+        else
+        {
+
+            Destroy(hairInstance.gameObject);
+            hairInstance = Instantiate(hairData.hairPrefab, hatPos);
+            
+        }
+    }
+
+    public void ChangePant()
+    {
+       
+        pantData = DataManager.Ins.GetPantData(GameManager.Ins.UserData.EquippedPant);      
+        pantInstance.material = pantData.PantMaterial;
+    }
 
     public void ChangeAnim(string animName)
     {

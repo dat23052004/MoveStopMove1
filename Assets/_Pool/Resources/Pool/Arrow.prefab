@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2929034766808027142}
   - component: {fileID: 3237840985485362396}
   - component: {fileID: 5963261350496023738}
+  - component: {fileID: -1793091653091510937}
   m_Layer: 0
   m_Name: Arrow
   m_TagString: Weapon
@@ -82,6 +83,19 @@ MonoBehaviour:
   botPosition: {x: 0, y: 0, z: 0}
   speedBullet: 5
   character: {fileID: 0}
+--- !u!114 &-1793091653091510937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094219896559913152}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b6c0387b071ab147be314287a6c173c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponType: 0
 --- !u!1001 &4216017592012752342
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -134,17 +148,21 @@ PrefabInstance:
       value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -1504981713932161579, guid: ceffb78c74021304889ac584f173d156, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -1504981713932161579, guid: ceffb78c74021304889ac584f173d156, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5abc38a2214a7894a82cfeffe672b7ec, type: 2}
+      objectReference: {fileID: 2100000, guid: 41695e2c9d29d294f9650ef989e8e0a6, type: 2}
     - target: {fileID: -1504981713932161579, guid: ceffb78c74021304889ac584f173d156, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
-      objectReference: {fileID: 2100000, guid: e875432adebac7846b70c67cee077999, type: 2}
+      objectReference: {fileID: 2100000, guid: 41695e2c9d29d294f9650ef989e8e0a6, type: 2}
     - target: {fileID: -1504981713932161579, guid: ceffb78c74021304889ac584f173d156, type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100000, guid: 6fa18077ee352fb41bcbb0e99d491832, type: 2}
+      objectReference: {fileID: 2100000, guid: 41695e2c9d29d294f9650ef989e8e0a6, type: 2}
     - target: {fileID: -927199367670048503, guid: ceffb78c74021304889ac584f173d156, type: 3}
       propertyPath: m_Name
       value: Arrow

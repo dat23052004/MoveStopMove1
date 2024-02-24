@@ -9,36 +9,41 @@ public class Bot : Character
 {
     private NavMeshAgent navMeshAgent;
     
-    private Level level;
+    private LevelManager level;
     
     private bool isMoving = false;
-    private Weapon currentWeapon = Weapon.Arrow;
+    private WeaponType currentWeapon = WeaponType.Arrow;
 
     private bool isRandomMovementActive = true;
         
     private void Start()
-    {
-        
+    {       
         ChangeAnim("Idle");
         navMeshAgent = GetComponent<NavMeshAgent>();
-
-        level = FindObjectOfType<Level>();
-        StartCoroutine(MovingToTarget());
-        StartCoroutine(RandomMovement());
+        level = FindObjectOfType<LevelManager>();
+        if (GameManager.IsState(GameState.Gameplay))
+        {
+            StartCoroutine(MovingToTarget());
+            StartCoroutine(RandomMovement());
+        }
+        
+        
     }   
 
-    private void Update()
+    protected override void Update()
     {
-        
-        CheckSight();
-        if (isMoving)
+        if (GameManager.IsState(GameState.Gameplay))
         {
-            ChangeAnim("Run");
-        }
-        else
-        {
-            ChangeAnim("Idle");
-        }
+            CheckSight();
+            if (isMoving)
+            {
+                ChangeAnim("Run");
+            }
+            else
+            {
+                ChangeAnim("Idle");
+            }
+        }        
     }
 
     private IEnumerator MovingToTarget()
@@ -110,12 +115,9 @@ public class Bot : Character
     {
         if (!isMoving)
         {
-            
-
             //Debug.Log("!Moving");
             if (CheckPosition(out Vector3 botPosition))
             {
-
                 //Shoot();
                 //Debug.Log("Shoot");
             }
@@ -165,7 +167,7 @@ public class Bot : Character
     }
 
 
-    private void Respawn(PoolType weaponType)
+    private void Respawn(WeaponType weaponType)
     {
         Vector3 directionToBot = Vector3.zero;
         if (CheckPosition(out Vector3 botPosition))

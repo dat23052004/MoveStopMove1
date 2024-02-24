@@ -17,3 +17,5 @@ MonoBehaviour:
   description: Arrow)>>>>
   price: 100
   Model: {fileID: 1094219896559913152, guid: 9e2a78033035ed846858622a99cb2533, type: 3}
+  weapon: {fileID: -1793091653091510937, guid: 527fdd8fa09ec9a4995faf5ae5baac02, type: 3}
+  weaponType: 0

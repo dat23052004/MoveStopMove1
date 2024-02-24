@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70aba3cc19b1e704a9c92c7b1305ca11, type: 3}
   m_Name: Data
   m_EditorClassIdentifier: 
+  PantType: 0
+  PantMaterial: {fileID: 2100000, guid: 8a50f4253d7d7264c814c7fdeff024a4, type: 2}
   bonus: 8% Move Speed
   price: 10
   image: {fileID: 21300000, guid: 1f7e9eb236c8768498ad5d8078d2533d, type: 3}

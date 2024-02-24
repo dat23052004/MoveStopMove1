@@ -17,3 +17,5 @@ MonoBehaviour:
   description: Vip2
   price: 200
   Model: {fileID: 6517103204923018153, guid: bef19670ce8d4704b8fd92689d161846, type: 3}
+  weapon: {fileID: -5882277941310812879, guid: f1c19df2a5d9aba4e98cea4505aae749, type: 3}
+  weaponType: 0

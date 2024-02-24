@@ -17,3 +17,5 @@ MonoBehaviour:
   description: Vip
   price: 150
   Model: {fileID: 9166079281363681627, guid: ff8b8774b785bb341942cd495c732fcc, type: 3}
+  weapon: {fileID: 2986662267092465019, guid: d497172402f5f3447b691679234e1896, type: 3}
+  weaponType: 1

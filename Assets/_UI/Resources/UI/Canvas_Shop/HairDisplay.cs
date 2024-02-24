@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class HairDisplay : MonoBehaviour
 {   
-    [SerializeField] private TextMeshProUGUI HairBonus;   
-    [SerializeField] private TextMeshProUGUI HairPrice;
+    [SerializeField] private TextMeshProUGUI hairBonus;   
+    [SerializeField] private TextMeshProUGUI hairPrice;
     [SerializeField] private Image HairImage;
     [SerializeField] private TextMeshProUGUI coinText;
 
@@ -19,10 +19,22 @@ public class HairDisplay : MonoBehaviour
         UpdateCoin(userData);
     }
     public void DisplayHair(HairData HairData)
-    {        
-        HairBonus.text = HairData.bonus;
-        HairPrice.text = HairData.price.ToString();
+    {       
+        hairBonus.text = HairData.bonus;
+        hairPrice.text = HairData.price.ToString();
         HairImage.sprite = HairData.image;       
+    }
+    public bool CanChange()
+    {
+        if (hairPrice.text == Constant.EQUIP_SKIN)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+
     }
 
     private void UpdateCoin(UserData userData)
@@ -32,6 +44,6 @@ public class HairDisplay : MonoBehaviour
 
     public void Equiped()
     {
-        HairPrice.SetText(Constant.EQUIP_SKIN);
+        hairPrice.SetText(Constant.EQUIP_SKIN);
     }
 }
