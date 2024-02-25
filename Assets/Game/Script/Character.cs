@@ -25,22 +25,22 @@ public class Character : ColorObject
     [SerializeField] protected HairData hairData;
     protected Weapon weaponInstance;
     public GameObject hairInstance;
-    public Transform hatPos;
+    public Transform hairPos;
     public SkinnedMeshRenderer pantInstance;
-
+    
 
     protected virtual void Update()
     {
         
     }
     protected virtual void OnInit()
-    {        
+    {
         //this.gameObject.layer = charLayerNumber;
         ChangeAnim(Constant.ANIM_IDLE);
 
         if (weaponData != null)
         {
-            ChangeWeapon();
+            ChangeWeapon();           
         }
         if (hairData != null)
         {
@@ -51,39 +51,29 @@ public class Character : ColorObject
             ChangePant();
         }
     }
+
     public void ChangeWeapon()
     {
-        
         weaponData = DataManager.Ins.GetWeaponData(GameManager.Ins.UserData.EquippedWeapon);
-        if (weaponInstance == null)
-        {
-            weaponInstance = Instantiate(weaponData.weapon, weaponHoldingPos.position, weaponHoldingPos.rotation);
-        }
-        else
+
+        if (weaponInstance != null)
         {
             Destroy(weaponInstance.gameObject);
-            weaponInstance = Instantiate(weaponData.weapon, weaponHoldingPos.position, weaponHoldingPos.rotation);
         }
-        weaponInstance.transform.parent = weaponHoldingPos;
-        //SetAttackRange();
-        //SetAttackSpeed();
+        
+        weaponInstance = Instantiate(weaponData.weapon, weaponHoldingPos.position, weaponHoldingPos.rotation, weaponHoldingPos);
     }
 
     public void ChangeHair()
     {        
-        hairData = DataManager.Ins.GetHatData(GameManager.Ins.UserData.EquippedHat);        
-        if (hairInstance == null)
+        hairData = DataManager.Ins.GetHatData(GameManager.Ins.UserData.EquippedHat);
+        if (hairInstance != null)
         {
-            Debug.Log(10);
-            hairInstance = Instantiate(hairData.hairPrefab, hatPos);
-        }
-        else
-        {
-
             Destroy(hairInstance.gameObject);
-            hairInstance = Instantiate(hairData.hairPrefab, hatPos);
-            
         }
+
+        hairInstance = Instantiate(hairData.hairPrefab, hairPos.position, hairPos.rotation, hairPos);
+        //hairInstance.transform.parent = hatPos;
     }
 
     public void ChangePant()

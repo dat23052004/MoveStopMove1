@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4866728731240895497}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: hairPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23,8 +23,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6161261879037156554}
-  m_LocalRotation: {x: 0.49187487, y: 0.610388, z: -0.43448982, w: -0.44351366}
-  m_LocalPosition: {x: -0.0000000521855, y: 0.00000030782294, z: -0.000000049018798}
+  m_LocalRotation: {x: -0.09215864, y: -0.028671157, z: -0.002654698, w: 0.99532795}
+  m_LocalPosition: {x: 0.009, y: -0.724, z: 0.038}
   m_LocalScale: {x: 1.0000019, y: 1.0000006, z: 1.0000025}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -57,7 +57,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6328249329163399690}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -126,13 +126,13 @@ MonoBehaviour:
   Sight_Can_Shoot: {fileID: 6328249329483207356}
   scaleIncrease: {x: 0.01, y: 0.01, z: 0.01}
   scaleSight: {x: 0.08, y: 0.08, z: 0.08}
-  weaponHoldingPos: {fileID: 0}
-  weaponData: {fileID: 0}
-  pantData: {fileID: 0}
-  hairData: {fileID: 0}
+  weaponHoldingPos: {fileID: 8719659764891871691}
+  weaponData: {fileID: 11400000, guid: e333add83b2830042b82e81d686ef6ef, type: 2}
+  pantData: {fileID: 11400000, guid: 04e899556bf674a4b8806d1baab6a240, type: 2}
+  hairData: {fileID: 11400000, guid: c5a0d1d7cf61c904eafafcddd9f92b86, type: 2}
   hairInstance: {fileID: 0}
-  hatPos: {fileID: 0}
-  pantInstance: {fileID: 0}
+  hairPos: {fileID: 4866728731240895497}
+  pantInstance: {fileID: 3419796225536439800}
   rb: {fileID: 6328249329163399684}
   joystick: {fileID: 0}
   groundLayer:
@@ -333,7 +333,7 @@ PrefabInstance:
     - target: {fileID: -6057140222963153312, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 710219df4568a5c419dfd2ad206d078c, type: 2}
+      objectReference: {fileID: 9100000, guid: af2cf7787f062f4428a4e2c6abf049b2, type: 2}
     - target: {fileID: -4216859302048453862, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -389,7 +389,7 @@ PrefabInstance:
     - target: {fileID: -529177695146175607, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 5ba2d13007cf8b544a98e21e6bcebfa5, type: 2}
+      objectReference: {fileID: 2100000, guid: 8a50f4253d7d7264c814c7fdeff024a4, type: 2}
     - target: {fileID: -529177695146175607, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
       propertyPath: m_Materials.Array.data[1]
       value: 
@@ -449,6 +449,16 @@ AimConstraint:
   m_IsContraintActive: 0
   m_IsLocked: 0
   m_Sources: []
+--- !u!137 &3419796225536439800 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -529177695146175607, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+  m_PrefabInstance: {fileID: 6328249331171370609}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8719659764891871691 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3373197664844238778, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}
+  m_PrefabInstance: {fileID: 6328249331171370609}
+  m_PrefabAsset: {fileID: 0}
 --- !u!95 &8944925337785966609 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: 38f9296dc39c27647a0119314baf12a2, type: 3}

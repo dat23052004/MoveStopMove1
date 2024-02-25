@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HairData 7
   m_EditorClassIdentifier: 
   hairType: 0
-  hairPrefab: {fileID: -927199367670048503, guid: c23b28c39e3ec4342a526e17123736bb, type: 3}
+  hairPrefab: {fileID: 8835434256698680863, guid: 5b31d770749d54249913103d9d871778, type: 3}
   bonus: 5% Range
   price: 80
   image: {fileID: 21300000, guid: 618234528de04654db5493d4d04dbbf2, type: 3}

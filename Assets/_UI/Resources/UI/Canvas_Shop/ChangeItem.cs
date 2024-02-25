@@ -48,7 +48,6 @@ public class ChangeItem : Singleton<ChangeItem>
         // Hair
         if (!data.BoughtHats.Contains((int)currentHairShownIndex) && data.CurrentCoins >= hairData[(int)currentHairShownIndex].price)
         {
-            Debug.Log(hairData[(int)currentHairShownIndex].price);
             data.BoughtHats.Add((int)currentHairShownIndex);
             data.CurrentCoins -= hairData[(int)currentHairShownIndex].price;
             currentCoinLeft.SetText(data.CurrentCoins.ToString());   
@@ -58,7 +57,7 @@ public class ChangeItem : Singleton<ChangeItem>
 
         if (hairDisplay[(int)currentHairShownIndex].CanChange())
         {
-            Debug.Log(123);
+            
             data.EquippedHat = (int)currentHairShownIndex;
             SaveManager.Ins.SaveData(data);
             LevelManager.Ins.player.ChangeHair();

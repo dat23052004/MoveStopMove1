@@ -11,11 +11,12 @@ public class Player : Character
 
     [SerializeField]private LayerMask groundLayer;
     private bool isMoving = false;
-  
-    private WeaponType currentWeapon = WeaponType.Axe;
 
+    private WeaponType currentWeapon = (WeaponType)0;
+    
     private Coroutine shootingCoroutine;
     private bool isMovingDuringDelay = false;
+    private float nextShootTime = 1.5f;
     private void Start()
     {       
         base.OnInit();
@@ -23,7 +24,7 @@ public class Player : Character
     }
     protected override void Update()
     {
-        //ChangeWeapon();
+        currentWeapon = weaponData.weaponType;
         Moving();
         CheckSight();             
     }
@@ -39,12 +40,11 @@ public class Player : Character
         {
             rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
             isMoving = movement.magnitude > 0;
-            ChangeAnim("Run");         
+            ChangeAnim(Constant.ANIM_RUN);         
         }
         else
         {
-            rb.velocity = Vector3.zero;
-            ChangeAnim("Idle");
+            rb.velocity = Vector3.zero;           
             isMoving = false;
         }
 
@@ -55,7 +55,8 @@ public class Player : Character
         }
         else
         {
-            ChangeAnim("Idle");
+            
+            ChangeAnim(Constant.ANIM_IDLE);
             isMovingDuringDelay = false;
         }
     }
@@ -64,16 +65,15 @@ public class Player : Character
     {
         if (!isMoving)
         {           
-            if (CheckPosition(out Vector3 botPosition))
+            if (CheckPosition(out Vector3 enemyPosition))
             {
-                Vector3 directionToBot = (botPosition - transform.position).normalized;
+                Vector3 directionToBot = (enemyPosition - transform.position).normalized;
                 transform.rotation = Quaternion.LookRotation(directionToBot);
-                ChangeAnim("Attack");
+                ChangeAnim(Constant.ANIM_ATTACK);
                 if (shootingCoroutine == null)
                 {
-                    Shoot(botPosition,0.5f);
+                    Shoot(enemyPosition, 0.3f);
                 }
-
             }           
         }
     }    
@@ -84,43 +84,15 @@ public class Player : Character
         foreach (Collider collider in colliders)
         {     
             if ( collider.gameObject != gameObject && collider.CompareTag("Character"))
-            {
-                
+            {              
                 position = collider.transform.position;
-                
-                //botPositions.Add(position);
+
                 return true;  // Trả về true nếu tìm thấy bot
             }
         }
 
         return false;
     }
-    private IEnumerator DestroyBullet(Bullet bulletObj, float maxDistance)
-    {
-        Vector3 initialPosition = bulletObj.transform.position;
-
-        while (Vector3.Distance(initialPosition, bulletObj.transform.position) < maxDistance)
-        {
-            yield return null;
-        }      
-        SimplePool.Despawn(bulletObj);
-        bulletAvailable = true;
-    }
-    //public IEnumerator Shoot(Vector3 botPosition, float delay)
-    //{
-
-    //    yield return new WaitForSeconds(delay);
-    //    if (bulletAvailable && !isMovingDuringDelay)
-    //    {
-    //        bulletAvailable = false;
-    //        bulletTime = timer;
-    //        Respawn(currentWeapon, botPosition);
-    //        Debug.Log("Shoot");
-    //        shootingCoroutine = null;
-    //        Debug.Log(3);
-    //    }              
-    //}
-
     public void Shoot(Vector3 botPosition, float delay)
     {
         // Kiểm tra xem có coroutine nào đang chạy hay không
@@ -142,24 +114,35 @@ public class Player : Character
         if (bulletAvailable && !isMovingDuringDelay)
         {
             bulletAvailable = false;
-            bulletTime = timer;
+            bulletTime = timer; 
             Respawn(currentWeapon, botPosition);
         }
 
         // Coroutine đã hoàn thành, đặt biến tham chiếu thành null
+        yield return new WaitForSeconds(2f);
         shootingCoroutine = null;
     }
 
     private void Respawn(WeaponType weaponType, Vector3 botPosition)
     {
-        //Vector3 directionToBot = (botPosition - transform.position).normalized;
-        //transform.rotation = Quaternion.LookRotation(directionToBot);    
         Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);
         bulletObj.character = this;
         bulletObj.DirectToBot = transform.forward;
         bulletObj.botPosition = botPosition;
         bulletObj.OnInit();
         StartCoroutine(DestroyBullet(bulletObj, radius));
+    }
+
+    private IEnumerator DestroyBullet(Bullet bulletObj, float maxDistance)
+    {
+        Vector3 initialPosition = bulletObj.transform.position;
+
+        while (Vector3.Distance(initialPosition, bulletObj.transform.position) < maxDistance)
+        {
+            yield return null;
+        }
+        SimplePool.Despawn(bulletObj);
+        bulletAvailable = true;
     }
 
 
@@ -178,20 +161,27 @@ public class Player : Character
         }
     }
   
-    void OnDrawGizmos()
-    {
-        // Vẽ hình cầu để hiển thị vùng không gian
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Weapon"))
         {
-            UIManager.Ins.OpenUI<Lose>();
-            GameManager.ChangeState(GameState.Lose);
-            Time.timeScale = 1;            
+            ChangeAnim(Constant.ANIM_DIE);
+            Invoke("Lose", 1.2f);
+
         }
+    }
+
+    public void Lose()
+    {
+        UIManager.Ins.OpenUI<Lose>();
+        GameManager.ChangeState(GameState.Lose);
+        Time.timeScale = 1;
+    }
+    void OnDrawGizmos()
+    {
+        // Vẽ hình cầu để hiển thị vùng không gian
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
     }
 }

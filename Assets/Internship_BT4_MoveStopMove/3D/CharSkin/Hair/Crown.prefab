@@ -25,14 +25,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6461652068112585766}
-  m_LocalRotation: {x: 0, y: 0.53604794, z: 0, w: -0.84418756}
-  m_LocalPosition: {x: 0.015, y: -0.311, z: -0.056}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.6896195, y: 0, z: 0, w: 0.72417194}
+  m_LocalPosition: {x: 0.015, y: -0.015, z: -0.056}
+  m_LocalScale: {x: 40, y: 40, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8419549665107649442}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -87.2, y: 0, z: 0}
 --- !u!33 &6188624088667730863
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -40,7 +40,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6461652068112585766}
-  m_Mesh: {fileID: -5408581538269021487, guid: c23b28c39e3ec4342a526e17123736bb, type: 3}
+  m_Mesh: {fileID: -539633534336874057, guid: 98b5be968415fe14b9697b19d0009414, type: 3}
 --- !u!23 &8882581331157980328
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -61,8 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a92485ac99713dc45902de7c3b21df28, type: 2}
-  - {fileID: -876546973899608171, guid: 179b83d00d7f3394bacb6b1ba3701b89, type: 3}
+  - {fileID: 2100000, guid: e00497dc8a5bcd44e91a4530adc6a978, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8419549665107649442}
   m_Layer: 0
-  m_Name: headphone
+  m_Name: Crown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
