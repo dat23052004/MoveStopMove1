@@ -8,6 +8,7 @@ public class MianMenu : UICanvas
     {
         UIManager.Ins.OpenUI<GamePlay>();       
         GameManager.ChangeState(GameState.Gameplay);
+        
         Time.timeScale = 1;
         Close(0);
     }

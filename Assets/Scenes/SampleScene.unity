@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 23800000, guid: 9e0649109e0cb584391653be243a6c86, type: 2}
+  m_NavMeshData: {fileID: 0}
 --- !u!4 &104029179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6328249329163399686, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
@@ -159,11 +159,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &251258654 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4866728731240895497, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
-  m_PrefabInstance: {fileID: 1870829985}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &412550775
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,14 +560,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
+  m_LocalRotation: {x: 0.42261827, y: 0, z: 0, w: 0.9063079}
   m_LocalPosition: {x: 0, y: 25.31, z: -35.52}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 50, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -587,7 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TF: {fileID: 963194228}
   playerTF: {fileID: 104029179}
-  offset: {x: 0, y: 12, z: -15}
+  offset: {x: 0, y: 18, z: -18}
 --- !u!1 &999562649
 GameObject:
   m_ObjectHideFlags: 0
@@ -634,7 +629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 672200919}
   levelDataSO: {fileID: 11400000, guid: a5ed127d3d3e3f64b9f5e59a9c4791a9, type: 2}
-  botPrefab: {fileID: 3894638585803896204, guid: 997d6ca8978014d4fba7d6626d0c88af, type: 3}
+  botPrefab: {fileID: 6328249329163399690, guid: b3f83d0f3bc532440b9cf2645fc8749f, type: 3}
   pointList: []
   maxBotCount: 10
   width: 100
@@ -1075,22 +1070,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6161261879037156554, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
-      propertyPath: m_Name
-      value: hairPos
-      objectReference: {fileID: 0}
-    - target: {fileID: 6328249329163399685, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
-      propertyPath: hairPos
-      value: 
-      objectReference: {fileID: 251258654}
     - target: {fileID: 6328249329163399685, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 811078498}
-    - target: {fileID: 6328249329163399685, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
-      propertyPath: hairInstance
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 6328249329163399686, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
       propertyPath: m_RootOrder
       value: 1

@@ -27,8 +27,9 @@ public class GameManager : Singleton<GameManager>
             UserData = new UserData();
             SaveManager.Ins.SaveData(UserData);
         }
+        UIManager.Ins.OpenUI<MianMenu>();
+        //ChangeState(GameState.MainMenu);
 
-    
         Input.multiTouchEnabled = false;
         Application.targetFrameRate = 60;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
@@ -38,14 +39,7 @@ public class GameManager : Singleton<GameManager>
         if (Screen.currentResolution.height > maxScreenHeight)
         {
             Screen.SetResolution(Mathf.RoundToInt(ratio * (float)maxScreenHeight), maxScreenHeight, true);
-        }
-
-        //csv.OnInit();
-        //userData?.OnInitData();
-
-        //ChangeState(GameState.MainMenu);
-
-        UIManager.Ins.OpenUI<MianMenu>();
+        }       
     }
 
     public static void ChangeState(GameState state)

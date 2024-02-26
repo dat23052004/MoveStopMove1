@@ -32,13 +32,13 @@ public class Bullet : GameUnit
 
 
     private void OnTriggerEnter(Collider other)
-    {       
+    {
+        if (!other.CompareTag("Weapon"))
+        {
             OnDespawn();
-            character.IncreaseScale();
             character.IncreaseRadius();
             character.bulletAvailable = true;
-            //Debug.Log(1);
-        
-        //ParticlePool.Play(ParticleType.Hit, transform.position, Quaternion.identity);
+        }
+          
     }
 }

@@ -8,22 +8,23 @@ public class Player : Character
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private FloatingJoystick joystick;
-
     [SerializeField]private LayerMask groundLayer;
-    private bool isMoving = false;
-
     private WeaponType currentWeapon = (WeaponType)0;
-    
+  
     private Coroutine shootingCoroutine;
-    private bool isMovingDuringDelay = false;
+    private bool isMovingDuringDelay = false;   
     private float nextShootTime = 1.5f;
     private void Start()
-    {       
-        base.OnInit();
-        ChangeAnim("Idle");      
+    {
+        Debug.Log(1);
+        base.OnInit();  
     }
     protected override void Update()
     {
+        if(bulletAvailable)
+        {
+            weaponInstance.gameObject.SetActive(true);
+        }
         currentWeapon = weaponData.weaponType;
         Moving();
         CheckSight();             
@@ -32,33 +33,37 @@ public class Player : Character
 
     public void Moving()
     {
-        Vector3 movement = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
-        Vector3 velocity = movement * moveSpeed;
-        RaycastHit hit;
-        Vector3 raycastOrigin = transform.position + transform.forward * 0.7f;
-        if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, 5f, groundLayer))
+        if (!isDead)
         {
-            rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
-            isMoving = movement.magnitude > 0;
-            ChangeAnim(Constant.ANIM_RUN);         
-        }
-        else
-        {
-            rb.velocity = Vector3.zero;           
-            isMoving = false;
-        }
+            Vector3 movement = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+            Vector3 velocity = movement * moveSpeed;
+            RaycastHit hit;
+            Vector3 raycastOrigin = transform.position + transform.forward * 0.7f;
+            if (Physics.Raycast(raycastOrigin, Vector3.down, out hit, 5f, groundLayer))
+            {
+                rb.velocity = new Vector3(velocity.x, rb.velocity.y, velocity.z);
+                isMoving = movement.magnitude > 0;
+                ChangeAnim(Constant.ANIM_RUN);
+            }
+            else
+            {
+                rb.velocity = Vector3.zero;
+                isMoving = false;
+            }
 
-        if (movement.magnitude > 0)
-        {
-            transform.rotation = Quaternion.LookRotation(movement);
-            isMovingDuringDelay = true;
-        }
-        else
-        {
-            
-            ChangeAnim(Constant.ANIM_IDLE);
-            isMovingDuringDelay = false;
-        }
+            if (movement.magnitude > 0)
+            {
+                transform.rotation = Quaternion.LookRotation(movement);
+                isMovingDuringDelay = true;
+            }
+            else
+            {
+
+                ChangeAnim(Constant.ANIM_IDLE);
+                isMovingDuringDelay = false;
+            }
+
+        }  
     }
 
     public void CheckSight()
@@ -72,7 +77,7 @@ public class Player : Character
                 ChangeAnim(Constant.ANIM_ATTACK);
                 if (shootingCoroutine == null)
                 {
-                    Shoot(enemyPosition, 0.3f);
+                    Shoot(enemyPosition, 0.3f);  // 0.3f là thời gian delay để changeaim
                 }
             }           
         }
@@ -107,17 +112,17 @@ public class Player : Character
         }
     }
 
-    private IEnumerator ShootCoroutine(Vector3 botPosition, float delay)
+    public IEnumerator ShootCoroutine(Vector3 botPosition, float delay)
     {
         yield return new WaitForSeconds(delay);
-
+        weaponInstance.gameObject.SetActive(false);
         if (bulletAvailable && !isMovingDuringDelay)
         {
             bulletAvailable = false;
             bulletTime = timer; 
             Respawn(currentWeapon, botPosition);
         }
-
+        
         // Coroutine đã hoàn thành, đặt biến tham chiếu thành null
         yield return new WaitForSeconds(2f);
         shootingCoroutine = null;
@@ -142,6 +147,7 @@ public class Player : Character
             yield return null;
         }
         SimplePool.Despawn(bulletObj);
+        
         bulletAvailable = true;
     }
 
@@ -165,18 +171,12 @@ public class Player : Character
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Weapon"))
-        {
+        {  
+            //joystick.gameObject.SetActive(false);
             ChangeAnim(Constant.ANIM_DIE);
-            Invoke("Lose", 1.2f);
-
+            isDead = true;
+            Invoke(nameof(OnDespawn), 1.2f);
         }
-    }
-
-    public void Lose()
-    {
-        UIManager.Ins.OpenUI<Lose>();
-        GameManager.ChangeState(GameState.Lose);
-        Time.timeScale = 1;
     }
     void OnDrawGizmos()
     {

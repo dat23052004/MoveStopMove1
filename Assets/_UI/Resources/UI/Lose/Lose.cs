@@ -10,6 +10,15 @@ public class Lose : UICanvas
     public void MainMenuButton()
     {
         UIManager.Ins.OpenUI<MianMenu>();
+        LevelManager.Ins.LoadLevel();
+        GameManager.ChangeState(GameState.MainMenu);
+        Close(0);
+    }
+    public void RetryButton()
+    {
+        UIManager.Ins.OpenUI<GamePlay>();
+        LevelManager.Ins.LoadLevel();
+        GameManager.ChangeState(GameState.Gameplay);
         Close(0);
     }
 }

@@ -11,6 +11,8 @@ public class Character : ColorObject
     protected float speedBullet = 4;
     public float radius = 5;
     public Transform SpawnBullet;
+    public bool isDead = false;
+    protected bool isMoving = false;
 
     protected string currentAnim;
     public bool bulletAvailable = true;
@@ -33,11 +35,11 @@ public class Character : ColorObject
     {
         
     }
-    protected virtual void OnInit()
+    public virtual void OnInit()
     {
         //this.gameObject.layer = charLayerNumber;
+        isDead = false;
         ChangeAnim(Constant.ANIM_IDLE);
-
         if (weaponData != null)
         {
             ChangeWeapon();           
@@ -59,9 +61,8 @@ public class Character : ColorObject
         if (weaponInstance != null)
         {
             Destroy(weaponInstance.gameObject);
-        }
-        
-        weaponInstance = Instantiate(weaponData.weapon, weaponHoldingPos.position, weaponHoldingPos.rotation, weaponHoldingPos);
+        }  
+        weaponInstance = Instantiate(weaponData.weapon, weaponHoldingPos.position, weaponHoldingPos.rotation, weaponHoldingPos);  
     }
 
     public void ChangeHair()
@@ -73,7 +74,8 @@ public class Character : ColorObject
         }
 
         hairInstance = Instantiate(hairData.hairPrefab, hairPos.position, hairPos.rotation, hairPos);
-        //hairInstance.transform.parent = hatPos;
+        
+        
     }
 
     public void ChangePant()
@@ -95,7 +97,11 @@ public class Character : ColorObject
                 anim.SetTrigger(currentAnim);
         }                      
     }
-
+    protected virtual void OnDespawn()
+    {
+        LevelManager.Ins.finishedLevel = false;
+        LevelManager.Ins.OnLose();
+    }
     public void IncreaseScale()
     {
         // Tăng kích thước của đối tượng

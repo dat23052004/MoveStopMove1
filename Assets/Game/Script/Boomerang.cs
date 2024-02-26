@@ -33,7 +33,7 @@ public class Boomerang : Bullet
 
         initialBotPosition = player.transform.position;
         float distanceToBot = Vector3.Distance(transform.position, initialBotPosition);
-        Debug.Log(distanceToBot);
+        
 
         if (distanceToBot < 0.1f)
         {

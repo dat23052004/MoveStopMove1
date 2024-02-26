@@ -48,8 +48,8 @@ public class LevelManager : Singleton<LevelManager>
         totalBotSpawn = currentLevel.totalBotSpawn;
 
         player = playerPrefab;
+        player.OnInit();
         player.transform.position = currentLevel.playerSpawnPoint.position;
-
         SpawnBotAtStart();
     }
 
@@ -60,7 +60,7 @@ public class LevelManager : Singleton<LevelManager>
             SpawnBot();
         }
     }
-    public void GeneratePoints()   // Duyệt các điểm để bot đi đến lần lượt.
+    public void GeneratePoints()   
     {
         // Số lượng điểm muốn tạo
         int numberOfPoints = 200;
@@ -107,6 +107,11 @@ public class LevelManager : Singleton<LevelManager>
         }
     }
 
+    public void OnLose()
+    {
+        GameManager.ChangeState(GameState.Lose);
+        UIManager.Ins.OpenUI<Lose>();
+    }
     public void OnFinish()
     {
         GameManager.ChangeState(GameState.Win);
