@@ -114,6 +114,7 @@ public class ChangeItem : Singleton<ChangeItem>
             currentHairShownIndex = (HairType)index; // Cập nhật giá trị hiện tại
             ShowDisplayAndCoin_Hair(currentHairShownIndex);
             currentTypeItem = 0;
+            LevelManager.Ins.player.TryHair(index);
         }
         else
         {
@@ -142,6 +143,7 @@ public class ChangeItem : Singleton<ChangeItem>
             currentPantShownIndex = (PantType)index; // Cập nhật giá trị hiện tại
             ShowDisplayAndCoin_Pant(currentPantShownIndex);
             currentTypeItem = 1;
+            LevelManager.Ins.player.TryPant(index);
         }
         else
         {

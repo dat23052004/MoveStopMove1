@@ -13,14 +13,12 @@ public class Bot : Character
     private Coroutine shootingCoroutine;
     //private bool isRandomMovementActive = true;
     private IState<Bot> currentState;
-    public Vector3 walkPoint;
-    public bool walkPointSet;
-    public float walkPointRange;
+    public Vector3 walkPoint;      // Vi tri di chuyen den
+    public bool walkPointSet;      
+    public float walkPointRange;   // Pham vi di chuyen 
+
     private void Start()
     {
-        //navMeshAgent = GetComponent<NavMeshAgent>();
-        //StartCoroutine(MovingToTarget());
-        //StartCoroutine(RandomMovement());
         OnInit();
     }   
 
@@ -51,9 +49,10 @@ public class Bot : Character
                 Vector3 directionToBot = (enemyPosition - transform.position).normalized;
                 transform.rotation = Quaternion.LookRotation(directionToBot);
                 ChangeAnim(Constant.ANIM_ATTACK);
-                if (shootingCoroutine == null)
+                if (canShoot == false)
                 {
-                    Shoot(enemyPosition, 0.3f);  // 0.3f là thời gian delay để changeaim
+                    canShoot = true;
+                    StartCoroutine(ShootCoroutine(enemyPosition, 0.2f));
                 }
             }
         }
@@ -74,36 +73,20 @@ public class Bot : Character
 
         return false;
     }
-    public void Shoot(Vector3 botPosition, float delay)
-    {
-        // Kiểm tra xem có coroutine nào đang chạy hay không
-        if (shootingCoroutine == null)
-        {
-            // Khởi tạo coroutine và gán tham chiếu vào biến
-            shootingCoroutine = StartCoroutine(ShootCoroutine(botPosition, delay));
-        }
-        else
-        {
-            Debug.Log("Coroutine is already running");
-        }
-    }
-
     public IEnumerator ShootCoroutine(Vector3 botPosition, float delay)
     {
         yield return new WaitForSeconds(delay);
         weaponInstance.gameObject.SetActive(false);
-        if (bulletAvailable)
+        if (bulletAvailable )
         {
             bulletAvailable = false;
             bulletTime = timer;
             Respawn(currentWeapon, botPosition);
         }
 
-        // Coroutine đã hoàn thành, đặt biến tham chiếu thành null
-        yield return new WaitForSeconds(2f);
-        shootingCoroutine = null;
+        yield return new WaitForSeconds(1.5f);
+        canShoot = false;
     }
-
     private void Respawn(WeaponType weaponType, Vector3 botPosition)
     {
         Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);

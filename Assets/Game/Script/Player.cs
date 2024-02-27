@@ -10,14 +10,11 @@ public class Player : Character
     [SerializeField] private FloatingJoystick joystick;
     [SerializeField]private LayerMask groundLayer;
     private WeaponType currentWeapon = (WeaponType)0;
-  
-    private Coroutine shootingCoroutine;
-    private bool isMovingDuringDelay = false;   
-    private float nextShootTime = 1.5f;
+    private bool isMovingDuring = false;
+
     private void Start()
     {
-        Debug.Log(1);
-        base.OnInit();  
+            base.OnInit();              
     }
     protected override void Update()
     {
@@ -29,7 +26,6 @@ public class Player : Character
         Moving();
         CheckSight();             
     }
-
 
     public void Moving()
     {
@@ -54,13 +50,14 @@ public class Player : Character
             if (movement.magnitude > 0)
             {
                 transform.rotation = Quaternion.LookRotation(movement);
-                isMovingDuringDelay = true;
+                isMovingDuring = true;
             }
             else
             {
 
                 ChangeAnim(Constant.ANIM_IDLE);
-                isMovingDuringDelay = false;
+                isMoving = false;
+                isMovingDuring= false;
             }
 
         }  
@@ -75,9 +72,10 @@ public class Player : Character
                 Vector3 directionToBot = (enemyPosition - transform.position).normalized;
                 transform.rotation = Quaternion.LookRotation(directionToBot);
                 ChangeAnim(Constant.ANIM_ATTACK);
-                if (shootingCoroutine == null)
-                {
-                    Shoot(enemyPosition, 0.3f);  // 0.3f là thời gian delay để changeaim
+                if (canShoot == false)
+                {     
+                    canShoot = true;
+                    StartCoroutine(ShootCoroutine(enemyPosition, 0.2f));
                 }
             }           
         }
@@ -87,7 +85,7 @@ public class Player : Character
         Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
         position = Vector3.zero;
         foreach (Collider collider in colliders)
-        {     
+        {
             if ( collider.gameObject != gameObject && collider.CompareTag("Character"))
             {              
                 position = collider.transform.position;
@@ -98,34 +96,22 @@ public class Player : Character
 
         return false;
     }
-    public void Shoot(Vector3 botPosition, float delay)
-    {
-        // Kiểm tra xem có coroutine nào đang chạy hay không
-        if (shootingCoroutine == null)
-        {
-            // Khởi tạo coroutine và gán tham chiếu vào biến
-            shootingCoroutine = StartCoroutine(ShootCoroutine(botPosition, delay));
-        }
-        else
-        {
-            Debug.Log("Coroutine is already running");
-        }
-    }
-
     public IEnumerator ShootCoroutine(Vector3 botPosition, float delay)
     {
         yield return new WaitForSeconds(delay);
         weaponInstance.gameObject.SetActive(false);
-        if (bulletAvailable && !isMovingDuringDelay)
+        if (bulletAvailable && !isMovingDuring)
         {
             bulletAvailable = false;
-            bulletTime = timer; 
+            bulletTime = timer;
             Respawn(currentWeapon, botPosition);
+            yield return new WaitForSeconds(1.5f);
+            canShoot = false;
         }
-        
-        // Coroutine đã hoàn thành, đặt biến tham chiếu thành null
-        yield return new WaitForSeconds(2f);
-        shootingCoroutine = null;
+        else
+        {
+            canShoot = false;
+        }
     }
 
     private void Respawn(WeaponType weaponType, Vector3 botPosition)
@@ -172,7 +158,6 @@ public class Player : Character
     {
         if (other.CompareTag("Weapon"))
         {  
-            //joystick.gameObject.SetActive(false);
             ChangeAnim(Constant.ANIM_DIE);
             isDead = true;
             Invoke(nameof(OnDespawn), 1.2f);

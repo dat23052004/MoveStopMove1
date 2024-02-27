@@ -16,7 +16,7 @@ public class Setting : UICanvas
     {
         UIManager.Ins.OpenUI<MianMenu>();
         GameManager.ChangeState(GameState.MainMenu);
-        Time.timeScale = 1;
+        
         Close(0);
     }    
 }

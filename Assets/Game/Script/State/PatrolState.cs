@@ -29,6 +29,7 @@ public class PatrolState : IState<Bot>
         patrolTimer += Time.deltaTime;
         if (patrolTimer >= patrolDuration)
         {
+            //bot.isMovingDuringDelay = false;
             bot.ChangeState(new IdleState());
         }
     }
@@ -52,14 +53,16 @@ public class PatrolState : IState<Bot>
             {
                 bot.walkPointSet = false;
             }
-
+                
             // Check if the bot is moving
             if (bot.navMeshAgent.velocity.magnitude > 0.1f)
             {
+                bot.isMoving = true;
                 bot.ChangeAnim(Constant.ANIM_RUN);
             }
             else
             {
+                bot.isMoving = false;
                 bot.ChangeAnim(Constant.ANIM_IDLE);
             }
         }
@@ -74,7 +77,6 @@ public class PatrolState : IState<Bot>
         bot.walkPoint = new Vector3(bot.transform.position.x + randomX, bot.transform.position.y, bot.transform.position.z + randomZ);
 
         bot.navMeshAgent.SetDestination(bot.walkPoint);
-
         bot.walkPointSet = true;
     }
 }

@@ -11,11 +11,12 @@ public class Character : ColorObject
     protected float speedBullet = 4;
     public float radius = 5;
     public Transform SpawnBullet;
-    public bool isDead = false;
-    protected bool isMoving = false;
 
-    protected string currentAnim;
+    public bool isDead = false;
+    public bool isMoving = false;  
+    public bool canShoot = false;
     public bool bulletAvailable = true;
+    protected string currentAnim;
 
     [SerializeField] GameObject Sight_Can_Shoot;
     [SerializeField] Vector3 scaleIncrease = new Vector3(0.01f, 0.01f, 0.01f);
@@ -29,7 +30,6 @@ public class Character : ColorObject
     public GameObject hairInstance;
     public Transform hairPos;
     public SkinnedMeshRenderer pantInstance;
-    
 
     protected virtual void Update()
     {
@@ -65,6 +65,16 @@ public class Character : ColorObject
         weaponInstance = Instantiate(weaponData.weapon, weaponHoldingPos.position, weaponHoldingPos.rotation, weaponHoldingPos);  
     }
 
+    public void TryHair(int index)
+    {
+        hairData = DataManager.Ins.hairData[index];
+        if (hairInstance != null)
+        {
+            Destroy(hairInstance.gameObject);
+        }
+        hairInstance = Instantiate(hairData.hairPrefab, hairPos.position, hairPos.rotation, hairPos);
+    }
+
     public void ChangeHair()
     {        
         hairData = DataManager.Ins.GetHatData(GameManager.Ins.UserData.EquippedHat);
@@ -72,12 +82,15 @@ public class Character : ColorObject
         {
             Destroy(hairInstance.gameObject);
         }
-
         hairInstance = Instantiate(hairData.hairPrefab, hairPos.position, hairPos.rotation, hairPos);
-        
-        
+               
     }
 
+    public void TryPant(int index)
+    {
+        pantData = DataManager.Ins.pantData[index];
+        pantInstance.material = pantData.PantMaterial;
+    }
     public void ChangePant()
     {
        
@@ -105,8 +118,8 @@ public class Character : ColorObject
     public void IncreaseScale()
     {
         // Tăng kích thước của đối tượng
-        //transform.localScale += scaleIncrease;
-        
+        transform.localScale += scaleIncrease;
+
     }
 
     public void IncreaseRadius()

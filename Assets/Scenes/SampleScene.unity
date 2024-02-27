@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: afe25eb0a713d2b4db9f6ed9ec8fd175, type: 2}
 --- !u!4 &104029179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6328249329163399686, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
@@ -207,15 +207,15 @@ MonoBehaviour:
   Pool:
   - root: {fileID: 1752489160}
     prefab: {fileID: 5963261350496023738, guid: 9e2a78033035ed846858622a99cb2533, type: 3}
-    amount: 15
+    amount: 20
     collect: 0
   - root: {fileID: 1752489160}
     prefab: {fileID: 3357138293660921411, guid: eeb44ec152538134c8f5e374c9ccb936, type: 3}
-    amount: 15
+    amount: 20
     collect: 0
   - root: {fileID: 1752489160}
     prefab: {fileID: 2312132953433483344, guid: 726b186aececbcb4993b324cd2773f48, type: 3}
-    amount: 15
+    amount: 20
     collect: 0
   Particle: []
 --- !u!1 &522844787
@@ -1074,6 +1074,18 @@ PrefabInstance:
       propertyPath: joystick
       value: 
       objectReference: {fileID: 811078498}
+    - target: {fileID: 6328249329163399685, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
+      propertyPath: scaleIncrease.x
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328249329163399685, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
+      propertyPath: scaleIncrease.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328249329163399685, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
+      propertyPath: scaleIncrease.z
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 6328249329163399686, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1121,6 +1133,22 @@ PrefabInstance:
     - target: {fileID: 6328249329163399690, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328249329483207358, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
+      propertyPath: m_Color.a
+      value: 0.16470589
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328249329483207358, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328249329483207358, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6328249329483207358, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6cf2736dd2f4bea4889e3f107e0aa4bf, type: 3}
