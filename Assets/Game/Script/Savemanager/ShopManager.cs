@@ -56,7 +56,5 @@ public class ShopManager : Singleton<ShopManager>
 {
     
     private UserData data;
-    //public bool hatSession;
-    //public bool pantSession;
     public int currentSession;
 }

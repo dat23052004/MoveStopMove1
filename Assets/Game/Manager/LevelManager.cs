@@ -109,6 +109,7 @@ public class LevelManager : Singleton<LevelManager>
 
     public void OnLose()
     {
+        UIManager.Ins.CloseUI<GamePlay>();
         GameManager.ChangeState(GameState.Lose);
         UIManager.Ins.OpenUI<Lose>();
     }

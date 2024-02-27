@@ -122,9 +122,12 @@ MonoBehaviour:
   timer: 5
   radius: 5
   SpawnBullet: {fileID: 6328249329929276880}
+  isDead: 0
+  isMoving: 0
+  canShoot: 0
   bulletAvailable: 1
   Sight_Can_Shoot: {fileID: 6328249329483207356}
-  scaleIncrease: {x: 0.01, y: 0.01, z: 0.01}
+  scaleIncrease: {x: 0.001, y: 0.001, z: 0.001}
   scaleSight: {x: 0.08, y: 0.08, z: 0.08}
   weaponHoldingPos: {fileID: 8719659764891871691}
   weaponData: {fileID: 11400000, guid: e333add83b2830042b82e81d686ef6ef, type: 2}
@@ -212,7 +215,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 926d9b489f2bdd840a304a012ea8df32, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.16470589}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

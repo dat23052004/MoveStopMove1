@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 6328249329163399684}
   - component: {fileID: 1947649012239188548}
   - component: {fileID: 734679158231336563}
+  - component: {fileID: 6996040452454988723}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Character
@@ -145,6 +146,9 @@ MonoBehaviour:
   timer: 2
   radius: 5
   SpawnBullet: {fileID: 6328249329929276880}
+  isDead: 0
+  isMoving: 0
+  canShoot: 0
   bulletAvailable: 1
   Sight_Can_Shoot: {fileID: 6328249329483207356}
   scaleIncrease: {x: 0.01, y: 0.01, z: 0.01}
@@ -160,6 +164,23 @@ MonoBehaviour:
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointSet: 0
   walkPointRange: 20
+--- !u!114 &6996040452454988723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6328249329163399690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 0.017205715, g: 0, b: 1, a: 0}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 1
+  indicator: {fileID: 0}
 --- !u!1 &6328249329483207356
 GameObject:
   m_ObjectHideFlags: 0

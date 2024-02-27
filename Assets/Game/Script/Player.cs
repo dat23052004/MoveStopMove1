@@ -54,8 +54,14 @@ public class Player : Character
             }
             else
             {
-
-                ChangeAnim(Constant.ANIM_IDLE);
+                if (GameManager.IsState(GameState.Shop))
+                {
+                    ChangeAnim(Constant.ANIM_DANCE);
+                }
+                else
+                {
+                    ChangeAnim(Constant.ANIM_IDLE);
+                }
                 isMoving = false;
                 isMovingDuring= false;
             }

@@ -12,6 +12,7 @@ public class Shop : UICanvas
 
     private void Start()
     {
+        LevelManager.Ins.player.ChangeAnim(Constant.ANIM_DANCE);
         ActivateScrollView(scrollView1);
         DeactivateOtherScrollViews(scrollView1);
     }
@@ -20,6 +21,8 @@ public class Shop : UICanvas
     {
         UIManager.Ins.OpenUI<MianMenu>();
         GameManager.ChangeState(GameState.MainMenu);
+        UIManager.Ins.Cam_Gameplay.SetActive(true);
+        //LevelManager.Ins.player.ChangeAnim(Constant.ANIM_IDLE);
         Time.timeScale = 1;
         Close(0);
     }
@@ -63,4 +66,5 @@ public class Shop : UICanvas
             }
         }
     }
+
 }

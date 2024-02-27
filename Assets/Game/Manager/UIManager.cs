@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class UIManager : Singleton<UIManager>
 {
+    public GameObject Cam_Gameplay, Cam_Shop;
     //dict for quick query UI prefab
     //dict dung de lu thong tin prefab canvas truy cap cho nhanh
     private Dictionary<System.Type, UICanvas> uiCanvasPrefab = new Dictionary<System.Type, UICanvas>();
@@ -36,8 +37,7 @@ public class UIManager : Singleton<UIManager>
         return canvas as T;
     }
 
-    //close UI directly
-    //dong UI canvas ngay lap tuc
+
     public void CloseUI<T>() where T : UICanvas
     {
         if (IsOpened<T>())
@@ -45,9 +45,7 @@ public class UIManager : Singleton<UIManager>
             GetUI<T>().CloseDirectly();
         }
     }   
-    
-    //close UI with delay time
-    //dong ui canvas sau delay time
+
     public void CloseUI<T>(float delayTime) where T : UICanvas
     {
         if (IsOpened<T>())
@@ -56,8 +54,6 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    //check UI is Opened
-    //kiem tra UI dang duoc mo len hay khong
     public bool IsOpened<T>() where T : UICanvas
     {
         return IsLoaded<T>() && uiCanvas[typeof(T)].gameObject.activeInHierarchy;
