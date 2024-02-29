@@ -56,6 +56,7 @@ public class Character : ColorObject
 
     public void ChangeWeapon()
     {
+        SoundManager.Ins.Sound.Play();
         weaponData = DataManager.Ins.GetWeaponData(GameManager.Ins.UserData.EquippedWeapon);
 
         if (weaponInstance != null)
@@ -76,7 +77,8 @@ public class Character : ColorObject
     }
 
     public void ChangeHair()
-    {        
+    {
+        SoundManager.Ins.Sound.Play();
         hairData = DataManager.Ins.GetHatData(GameManager.Ins.UserData.EquippedHat);
         if (hairInstance != null)
         {
@@ -93,7 +95,7 @@ public class Character : ColorObject
     }
     public void ChangePant()
     {
-       
+        SoundManager.Ins.Sound.Play();
         pantData = DataManager.Ins.GetPantData(GameManager.Ins.UserData.EquippedPant);      
         pantInstance.material = pantData.PantMaterial;
     }

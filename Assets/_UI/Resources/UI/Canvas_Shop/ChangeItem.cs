@@ -46,6 +46,7 @@ public class ChangeItem : Singleton<ChangeItem>
     public void BuyItem()
     {
         // Hair
+        SoundManager.Ins.Sound.Play();
         if (!data.BoughtHats.Contains((int)currentHairShownIndex) && data.CurrentCoins >= hairData[(int)currentHairShownIndex].price)
         {
             data.BoughtHats.Add((int)currentHairShownIndex);
@@ -109,6 +110,7 @@ public class ChangeItem : Singleton<ChangeItem>
 
     public void ButtonHair(int index)
     {
+        SoundManager.Ins.Sound.Play();
         if (index >= 0 && index < hairData.Length)
         {
             currentHairShownIndex = (HairType)index; // Cập nhật giá trị hiện tại
@@ -123,6 +125,7 @@ public class ChangeItem : Singleton<ChangeItem>
     }
     public void Display_Hair(int index)
     {
+        SoundManager.Ins.Sound.Play();
         for (int i = 0; i < pantData.Length; i++)
         {
             hairDisplay[i].DisplayHair(hairData[i]);           
@@ -138,6 +141,7 @@ public class ChangeItem : Singleton<ChangeItem>
 
     public void ButtonPant(int index)
     {
+        SoundManager.Ins.Sound.Play();
         if (index >= 0 && index < pantData.Length)
         {
             currentPantShownIndex = (PantType)index; // Cập nhật giá trị hiện tại
@@ -166,6 +170,7 @@ public class ChangeItem : Singleton<ChangeItem>
 
     public void ButtonShield(int index)
     {
+        SoundManager.Ins.Sound.Play();
         if (index >= 0 && index < shieldData.Length)
         {
             currentShieldShownIndex = (ShieldType)index; // Cập nhật giá trị hiện tại
@@ -194,6 +199,7 @@ public class ChangeItem : Singleton<ChangeItem>
 
     public void ButtonSet(int index)
     {
+        SoundManager.Ins.Sound.Play();
         if (index >= 0 && index < setData.Length)
         {
             currentSetShownIndex = (SetType)index; // Cập nhật giá trị hiện tại

@@ -9,6 +9,7 @@ public class Lose : UICanvas
 
     public void MainMenuButton()
     {
+        SoundManager.Ins.Sound.Play();
         UIManager.Ins.OpenUI<MianMenu>();
         LevelManager.Ins.LoadLevel();
         GameManager.ChangeState(GameState.MainMenu);
@@ -16,6 +17,7 @@ public class Lose : UICanvas
     }
     public void RetryButton()
     {
+        SoundManager.Ins.Sound.Play();
         UIManager.Ins.OpenUI<GamePlay>();
         LevelManager.Ins.LoadLevel();
         GameManager.ChangeState(GameState.Gameplay);

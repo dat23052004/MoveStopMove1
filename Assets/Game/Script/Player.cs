@@ -122,6 +122,7 @@ public class Player : Character
 
     private void Respawn(WeaponType weaponType, Vector3 botPosition)
     {
+        SoundManager.Ins.Sound.GunPlayAt();
         Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);
         bulletObj.character = this;
         bulletObj.DirectToBot = transform.forward;
@@ -162,8 +163,9 @@ public class Player : Character
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Weapon"))
-        {  
+        if (other.CompareTag(Constant.WeaponTag))
+        {
+            SoundManager.Ins.Sound.DeadPlayAt();
             ChangeAnim(Constant.ANIM_DIE);
             isDead = true;
             Invoke(nameof(OnDespawn), 1.2f);

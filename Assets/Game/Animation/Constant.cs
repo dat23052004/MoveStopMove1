@@ -19,4 +19,6 @@ public class Constant : MonoBehaviour
     public const string WIN = "You Won!";
     public const string RETRY = "Retry";
     public const string GAMEOVER = "Game Over";
+    public const string WeaponTag = "Weapon";
+    public const string CharacterTag = "Character";
 }

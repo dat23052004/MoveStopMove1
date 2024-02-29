@@ -10,6 +10,7 @@ public class WeaponUI : UICanvas
     }
     public void CloseButton()
     {
+        SoundManager.Ins.Sound.Play();
         UIManager.Ins.OpenUI<MianMenu>();
         GameManager.ChangeState(GameState.MainMenu);
         Time.timeScale = 1;

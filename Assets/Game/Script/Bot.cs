@@ -10,8 +10,6 @@ public class Bot : Character
     public NavMeshAgent navMeshAgent;
  
     private WeaponType currentWeapon = WeaponType.Arrow;
-    private Coroutine shootingCoroutine;
-    //private bool isRandomMovementActive = true;
     private IState<Bot> currentState;
     public Vector3 walkPoint;      // Vi tri di chuyen den
     public bool walkPointSet;      
@@ -89,6 +87,7 @@ public class Bot : Character
     }
     private void Respawn(WeaponType weaponType, Vector3 botPosition)
     {
+        SoundManager.Ins.Sound.GunPlayAt();
         Bullet bulletObj = SimplePool.Spawn<Bullet>(GetTypeWeapon(weaponType), SpawnBullet.position, transform.rotation);
         bulletObj.character = this;
         bulletObj.DirectToBot = transform.forward;
@@ -190,8 +189,9 @@ public class Bot : Character
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Weapon"))
+        if(other.CompareTag(Constant.WeaponTag))
         {
+            SoundManager.Ins.Sound.DeadPlayAt();
             isDead = true;
             isMoving = false;
             StartCoroutine(AnimDie());
@@ -220,68 +220,3 @@ public class Bot : Character
         }
     }
 }
-
-    //private IEnumerator MovingToTarget()
-    //{
-    //    while (isRandomMovementActive)
-    //    {
-    //        Vector3 randomDestination = GetRandomDestination();
-    //        // Di chuyển bot đến điểm đó
-    //        navMeshAgent.SetDestination(randomDestination);
-
-    //        // Chờ đợi cho đến khi bot đến điểm đích
-    //        while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
-    //        {               
-    //            isMoving = true;
-    //            yield return null;  
-    //        }
-    //        isMoving = false;
-    //        yield return new WaitForSeconds(1);
-    //        //StopRandomMovement();
-    //        //isMoving = false;
-    //    }
-    //    isRandomMovementActive = true;
-    //}
-
-    //private Vector3 GetRandomDestination()
-    //{
-    //    if (level.pointList.Count > 0)
-    //    {
-    //        int randomIndex = Random.Range(0, level.pointList.Count);
-    //        return level.pointList[randomIndex];
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("No points available in the level.pointList.");
-    //        // Nếu không có điểm nào trong danh sách, trả về vị trí hiện tại của bot
-    //        return transform.position;
-    //    }
-    //}
-    //private IEnumerator RandomMovement()
-    //{
-    //    while (isRandomMovementActive)
-    //    {
-    //        if (isMoving)
-    //        {
-    //            // Tính thời gian ngẫu nhiên để đứng lại (từ 4 đến 6 giây)
-    //            float standStillTime = Random.Range(2f, 4f);
-
-    //            // Đứng lại
-    //            isMoving = false;
-
-    //            // Chờ thời gian đứng lại (1.5 giây)
-    //            yield return new WaitForSeconds(1.5f);
-
-    //            // Tiếp tục di chuyển
-    //            isMoving = true;
-
-    //            // Chờ thời gian di chuyển (tính từ thời gian đứng lại)
-    //            yield return new WaitForSeconds(standStillTime - 1.5f);
-    //        }
-    //        else
-    //        {
-    //            // Nếu không di chuyển, chờ một lúc trước khi kiểm tra lại
-    //            yield return new WaitForSeconds(0.1f);
-    //        }
-    //    }
-    //}

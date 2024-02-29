@@ -27,6 +27,7 @@ public class WeaponSelection : Singleton<WeaponSelection>
 
     public void BuyWeapon()
     {
+        SoundManager.Ins.Sound.Play();
         if (!data.BoughtWeapons.Contains((int)currentWeapShownIndex) && data.CurrentCoins >= weaponData[(int)currentWeapShownIndex].price)
         {       
             Debug.Log(weaponData[(int)currentWeapShownIndex].price);
@@ -47,6 +48,7 @@ public class WeaponSelection : Singleton<WeaponSelection>
 
     public void NextWeaponInShop()
     {
+        SoundManager.Ins.Sound.Play();
         if (currentWeapShownIndex == (WeaponType)2)
         {
             currentWeapShownIndex = (WeaponType)0;
@@ -61,6 +63,7 @@ public class WeaponSelection : Singleton<WeaponSelection>
 
     public void PrevWeaponInShop()
     {
+        SoundManager.Ins.Sound.Play();
         print(1);
         if (currentWeapShownIndex == (WeaponType)0)
         {

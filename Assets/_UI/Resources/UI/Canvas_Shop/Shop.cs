@@ -19,6 +19,7 @@ public class Shop : UICanvas
 
     public void CloseButton()
     {
+        SoundManager.Ins.Sound.Play();
         UIManager.Ins.OpenUI<MianMenu>();
         GameManager.ChangeState(GameState.MainMenu);
         UIManager.Ins.Cam_Gameplay.SetActive(true);
@@ -28,23 +29,27 @@ public class Shop : UICanvas
     }
     public void OnButtonHair()
     {
+        SoundManager.Ins.Sound.Play();
         ActivateScrollView(scrollView1);
         DeactivateOtherScrollViews(scrollView1);
     }
 
     public void OnButtonPants()
     {
+        SoundManager.Ins.Sound.Play();
         ActivateScrollView(scrollView2);
         DeactivateOtherScrollViews(scrollView2);
     }
 
     public void OnButtonSet()
     {
+        SoundManager.Ins.Sound.Play();
         ActivateScrollView(scrollView4);
         DeactivateOtherScrollViews(scrollView4);
     }
     public void OnButtonShield()
     {
+        SoundManager.Ins.Sound.Play();
         ActivateScrollView(scrollView3);
         DeactivateOtherScrollViews(scrollView3);
     }

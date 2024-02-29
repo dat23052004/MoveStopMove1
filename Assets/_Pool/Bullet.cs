@@ -34,7 +34,7 @@ public class Bullet : GameUnit
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Weapon"))
+        if (!other.CompareTag(Constant.WeaponTag))
         {            
             OnDespawn();
             character.IncreaseRadius();
