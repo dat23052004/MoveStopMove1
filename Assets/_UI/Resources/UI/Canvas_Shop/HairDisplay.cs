@@ -10,9 +10,24 @@ public class HairDisplay : MonoBehaviour
 {   
     [SerializeField] private TextMeshProUGUI hairBonus;   
     [SerializeField] private TextMeshProUGUI hairPrice;
+    [SerializeField] private TextMeshProUGUI hairEquip;
     [SerializeField] private Image HairImage;
     [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private Outline equipOutline;
+    [SerializeField] private Outline unequipOutline;
 
+    public void SetOutlineVisibility(bool equipOutlineVisible, bool unequipOutlineVisible)
+    {
+        if (equipOutline != null)
+        {
+            equipOutline.enabled = equipOutlineVisible;
+        }
+
+        if (unequipOutline != null)
+        {
+            unequipOutline.enabled = unequipOutlineVisible;
+        }
+    }
     public void DisplayHairAndUpdatCoint(HairData hairData, UserData userData)
     {
         DisplayHair(hairData);
@@ -26,7 +41,7 @@ public class HairDisplay : MonoBehaviour
     }
     public bool CanChange()
     {
-        if (hairPrice.text == Constant.EQUIP_SKIN)
+        if (hairEquip.text == Constant.UNEQUIP_SKIN)
         {
             return true;
         }
@@ -34,7 +49,7 @@ public class HairDisplay : MonoBehaviour
         {
             return false;
         }
-
+        
     }
 
     private void UpdateCoin(UserData userData)
@@ -44,6 +59,6 @@ public class HairDisplay : MonoBehaviour
 
     public void Equiped()
     {
-        hairPrice.SetText(Constant.EQUIP_SKIN);
+        hairEquip.SetText(Constant.UNEQUIP_SKIN);
     }
 }

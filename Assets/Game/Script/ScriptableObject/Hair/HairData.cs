@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEditor.LightingExplorerTableColumn;
 
 [CreateAssetMenu(fileName = "Data", menuName = "Custom/Hair", order = 1)]
 public class HairData : ScriptableObject

@@ -13,6 +13,7 @@ public class Constant : MonoBehaviour
     public const string ANIM_ULTI = "Util";
     public const string ANIM_ATTACK = "Attack";
     public const string EQUIP_SKIN = "Equip";
+    public const string UNEQUIP_SKIN = "UnEquip";
     public const string OWNED = "Owned";
     public const string LOCKED = "Locked";
     public const string NEXT_LEVEL = "Next Level";

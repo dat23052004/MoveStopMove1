@@ -14,7 +14,6 @@ public class GameManager : Singleton<GameManager>
     // Start is called before the first frame update
     protected void Awake()
     {
-        //base.Awake();
 
         if (SaveManager.Ins.HasData<UserData>())
         {

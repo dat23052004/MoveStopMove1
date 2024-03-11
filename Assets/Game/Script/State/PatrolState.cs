@@ -48,7 +48,6 @@ public class PatrolState : IState<Bot>
         else
         {
             bot.navMeshAgent.SetDestination(bot.walkPoint);
-
             if (Vector3.Distance(bot.transform.position, bot.walkPoint) < 1f)
             {
                 bot.walkPointSet = false;

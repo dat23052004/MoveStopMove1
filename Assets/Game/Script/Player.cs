@@ -1,8 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.LightingExplorerTableColumn;
+
 
 public class Player : Character
 {
@@ -54,7 +52,7 @@ public class Player : Character
             }
             else
             {
-                if (GameManager.IsState(GameState.Shop))
+                if (GameManager.IsState(GameState.Shop) || GameManager.IsState(GameState.Weapon))
                 {
                     ChangeAnim(Constant.ANIM_DANCE);
                 }

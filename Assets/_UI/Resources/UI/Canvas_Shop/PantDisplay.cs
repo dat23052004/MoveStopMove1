@@ -8,8 +8,24 @@ public class PantDisplay : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI PantBonus;
     [SerializeField] private TextMeshProUGUI PantPrice;
+    [SerializeField] private TextMeshProUGUI PantEquip;
     [SerializeField] private Image pantImage;
     [SerializeField] private TextMeshProUGUI coinText;
+    [SerializeField] private Outline equipOutline;
+    [SerializeField] private Outline unequipOutline;
+
+    public void SetOutlineVisibility(bool equipOutlineVisible, bool unequipOutlineVisible)
+    {
+        if (equipOutline != null)
+        {
+            equipOutline.enabled = equipOutlineVisible;
+        }
+
+        if (unequipOutline != null)
+        {
+            unequipOutline.enabled = unequipOutlineVisible;
+        }
+    }
 
     public void DisplayPantAndUpdatCoint(PantData pantData, UserData userData)
     {
@@ -24,7 +40,7 @@ public class PantDisplay : MonoBehaviour
     }
     public bool CanChange()
     {
-        if (PantPrice.text == Constant.EQUIP_SKIN)
+        if (PantEquip.text == Constant.UNEQUIP_SKIN)
         {
             return true;
         }
@@ -41,6 +57,6 @@ public class PantDisplay : MonoBehaviour
     }
     public void Equiped()
     {
-        PantPrice.SetText(Constant.EQUIP_SKIN);
+        PantEquip.SetText(Constant.UNEQUIP_SKIN);
     }
 }

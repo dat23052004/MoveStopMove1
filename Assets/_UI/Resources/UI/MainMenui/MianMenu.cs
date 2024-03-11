@@ -16,7 +16,9 @@ public class MianMenu : UICanvas
     public void WeaponButton()
     {
         SoundManager.Ins.Sound.Play();
+        UIManager.Ins.Cam_Gameplay.SetActive(false);
         UIManager.Ins.OpenUI<WeaponUI>();
+        GameManager.ChangeState(GameState.Weapon);
         Close(0);
     }   
     

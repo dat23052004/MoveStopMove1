@@ -32,7 +32,6 @@ public class SoundManager : Singleton<SoundManager>
 
     public void PlaySound(AudioClip sound)
     {
-        Debug.Log(22324);
         efxSource.PlayOneShot(sound);
     }
 

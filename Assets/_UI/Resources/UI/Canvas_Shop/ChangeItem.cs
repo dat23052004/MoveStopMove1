@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChangeItem : Singleton<ChangeItem>
 {
@@ -24,6 +25,9 @@ public class ChangeItem : Singleton<ChangeItem>
     private ShieldType currentShieldShownIndex = (ShieldType)0;
     private SetType currentSetShownIndex = (SetType)0;
     public int currentTypeItem;
+    public Button price;
+    public Button unequip;
+    public Button equip;
 
     private void Awake()
     {
@@ -41,6 +45,8 @@ public class ChangeItem : Singleton<ChangeItem>
     private void Update()
     {
         SetItemAvailability(currentHairShownIndex, currentPantShownIndex, currentShieldShownIndex, currentSetShownIndex);
+        CheckEquip();
+        CheckOutline();
     }
 
     public void BuyItem()
@@ -56,14 +62,6 @@ public class ChangeItem : Singleton<ChangeItem>
             SaveManager.Ins.SaveData(data);
         }
 
-        if (hairDisplay[(int)currentHairShownIndex].CanChange())
-        {
-            
-            data.EquippedHat = (int)currentHairShownIndex;
-            SaveManager.Ins.SaveData(data);
-            LevelManager.Ins.player.ChangeHair();
-        }
-
         // Pant
         if (!data.BoughtPants.Contains((int)currentPantShownIndex) && data.CurrentCoins >= pantData[(int)currentPantShownIndex].price)
         {
@@ -74,33 +72,89 @@ public class ChangeItem : Singleton<ChangeItem>
             pantDisplay[(int)currentPantShownIndex].DisplayPantAndUpdatCoint(pantData[(int)currentPantShownIndex], data);
             SaveManager.Ins.SaveData(data);
         }
-
-        if (pantDisplay[(int)currentPantShownIndex].CanChange())
+    }
+    public void UseItem()
+    {
+        if(currentTypeItem == 0)
         {
-            data.EquippedPant = (int)currentPantShownIndex;
-            SaveManager.Ins.SaveData(data);
-            LevelManager.Ins.player.ChangePant();
+            if (hairDisplay[(int)currentHairShownIndex].CanChange())
+            {
+                Debug.Log(2);
+                data.EquippedHat = (int)currentHairShownIndex;
+                SaveManager.Ins.SaveData(data);
+                LevelManager.Ins.player.ChangeHair();
+            }
+
         }
-
-        // Shield
-        //if (!data.BoughtShields.Contains((int)currentPantShownIndex) && data.CurrentCoins >= pantData[(int)currentPantShownIndex].price)
-        //{
-        //    Debug.Log(pantData[(int)currentPantShownIndex].price);
-        //    data.BoughtPants.Add((int)currentPantShownIndex);
-        //    data.CurrentCoins -= pantData[(int)currentPantShownIndex].price;
-        //    currentCoinLeft.SetText(data.CurrentCoins.ToString());
-        //    pantDisplay[(int)currentPantShownIndex].DisplayPantAndUpdatCoint(pantData[(int)currentPantShownIndex], data);
-        //    SaveManager.Ins.SaveData(data);
-        //}
-
-        //if (hairData[(int)currentPantShownIndex].price.ToString() == Constant.EQUIP_SKIN)
-        //{
-        //    data.EquippedPant = (int)currentPantShownIndex;
-        //    SaveManager.Ins.SaveData(data);
-        //}
-
+        if(currentTypeItem == 1)
+        {
+            if (pantDisplay[(int)currentPantShownIndex].CanChange())
+            {
+                Debug.Log(3);
+                data.EquippedPant = (int)currentPantShownIndex;
+                SaveManager.Ins.SaveData(data);
+                LevelManager.Ins.player.ChangePant();
+            }
+        }
     }
 
+
+    public void CheckEquip()
+    {
+        if(currentTypeItem == 0)
+        {
+            if (!data.BoughtHats.Contains((int)currentHairShownIndex))
+            {
+                price.gameObject.SetActive(true);
+                equip.gameObject.SetActive(false);
+                unequip.gameObject.SetActive(false);
+            }
+            else
+            {
+                price.gameObject.SetActive(false);
+                if (data.EquippedHat != (int)currentHairShownIndex)
+                {
+                    Debug.Log(333);
+                    unequip.gameObject.SetActive(true);
+                    equip.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.Log(222);
+                    unequip.gameObject.SetActive(false);
+                    equip.gameObject.SetActive(true);
+                }
+            }
+        }
+
+
+        if(currentTypeItem == 1)
+        {
+            if (!data.BoughtPants.Contains((int)currentPantShownIndex))
+            {
+                price.gameObject.SetActive(true);
+                equip.gameObject.SetActive(false);
+                unequip.gameObject.SetActive(false);     
+            }
+            else
+            {
+                price.gameObject.SetActive(false);
+                if (data.EquippedPant != (int)currentPantShownIndex)
+                {
+                    Debug.Log(333);
+                    unequip.gameObject.SetActive(true);
+                    equip.gameObject.SetActive(false);
+                }
+                else
+                {
+                    Debug.Log(222);
+                    unequip.gameObject.SetActive(false);
+                    equip.gameObject.SetActive(true);
+                }
+            }
+        }
+  
+    }
 
     // CHOOSE HAIR
     private void ShowDisplayAndCoin_Hair(HairType type)
@@ -126,10 +180,62 @@ public class ChangeItem : Singleton<ChangeItem>
     public void Display_Hair(int index)
     {
         SoundManager.Ins.Sound.Play();
-        for (int i = 0; i < pantData.Length; i++)
+        for (int i = 0; i < hairData.Length; i++)
         {
-            hairDisplay[i].DisplayHair(hairData[i]);           
+            hairDisplay[i].DisplayHair(hairData[i]);
+            
         }
+    }
+
+    public void CheckOutline()
+    {
+        if(currentTypeItem == 0)
+        {
+            for (int i = 0; i < hairData.Length; i++)
+            {
+                if (!data.BoughtHats.Contains(i))
+                {
+                    hairDisplay[i].SetOutlineVisibility(false, false);
+                }
+                else
+                {
+                    if (data.EquippedHat != i)
+                    {
+                        hairDisplay[i].SetOutlineVisibility(true, false);
+                    }
+                    else
+                    {
+                        hairDisplay[i].SetOutlineVisibility(false, true);
+                    }
+                }
+            }
+        }
+        if (currentTypeItem == 1)
+        {
+            Debug.Log(1);
+            for (int i = 0; i < pantData.Length; i++)
+            {
+                Debug.Log(2);
+                if (!data.BoughtPants.Contains(i))
+                {
+                    Debug.Log(3);
+                    pantDisplay[i].SetOutlineVisibility(false, false);
+                }
+                else
+                {
+                    if (data.EquippedPant != i)
+                    {
+                        Debug.Log(4);
+                        pantDisplay[i].SetOutlineVisibility(true, false);
+                    }
+                    else
+                    {
+                        Debug.Log(5);
+                        pantDisplay[i].SetOutlineVisibility(false, true);
+                    }
+                }
+            }
+        }    
     }
 
 
